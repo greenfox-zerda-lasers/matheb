@@ -1,0 +1,23 @@
+h1{
+  color: blue;
+}
+
+h2{
+  color: #f4d942;
+}
+
+ #apple{
+   color:red;
+ }
+
+ .categories{
+   color: blue;
+ }
+
+ul{
+  list-style: square;
+}
+
+.second{
+  list-style: disc;
+}

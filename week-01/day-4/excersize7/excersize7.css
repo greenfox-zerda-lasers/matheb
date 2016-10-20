@@ -1,0 +1,22 @@
+div{
+  font-size: 18px;
+  font-family: Times;
+  font-weight: normal;
+  color: black;
+  width: 300px;
+  border: solid;
+  border-top-style: none;
+  border-width: 3px;
+  border-color: #0A0300;
+  padding: 20px 25px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.last{
+  border-bottom-style: none;
+}
+
+div:hover{
+  background-color: #f9835e;
+}

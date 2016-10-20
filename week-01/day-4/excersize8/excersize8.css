@@ -1,0 +1,27 @@
+div{
+  font-size: 18px;
+  font-family: Times;
+  font-weight: normal;
+  color: black;
+  width: 300px;
+  border: solid;
+  border-width: 3px;
+  border-color: #0A0300;
+  padding: 40px;
+  margin: 20px;
+  box-sizing: border-box;
+  background-image: url('duck.png');
+  background-repeat: no-repeat;
+}
+
+.first{
+  background-position: top left;
+}
+
+.second{
+  background-position: center;
+}
+
+.third{
+  background-position: bottom right;;
+}

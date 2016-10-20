@@ -1,0 +1,15 @@
+.small_box{
+  font-size: 30px;
+  font-family: Times;
+  font-weight: normal;
+  color: #D80F00;
+  width: 210px;
+  height: 30px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #0A0300;
+  padding: 25px 20px 25px 20px;
+  margin: 15px;
+  background-color: #FFFF00;
+
+}

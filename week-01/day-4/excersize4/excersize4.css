@@ -1,0 +1,15 @@
+h1{
+  color: green;
+}
+
+h2{
+  color: green;
+}
+ em{
+   color: blue;
+   font-style: italic;
+ }
+
+p::first-letter{
+  color: red;
+}

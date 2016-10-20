@@ -1,0 +1,28 @@
+.small_box{
+  font-size: 30px;
+  font-family: Times;
+  font-weight: normal;
+  color: #130BC0;
+  width: 210px;
+  height: 30px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #0A0300;
+  padding: 25px 20px 25px 20px;
+  margin: 0px;
+  background-color: #FFFF00;
+
+}
+
+.box_group{
+  margin: 10px;
+  width: 258px;
+  border: 20px;
+  border-style: solid;
+  border-color: #008300;
+}
+
+.second .small_box{
+  background-color: #00FFFF;
+  color: #B11D29;
+}
