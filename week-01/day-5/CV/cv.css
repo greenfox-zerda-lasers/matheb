@@ -1,0 +1,119 @@
+body{
+  color: #222222;
+  font-family: 'Abril Fatface', cursive;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+body > div {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.main_content{
+  font-family: 'Abril Fatface', cursive;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h1{
+  font-size: 60px;
+}
+
+h2{
+  font-size: 35px;
+}
+
+#myname{
+  box-sizing: border-box;
+  background-image: url('anakin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  text-align: left;
+  padding-top: 250px;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+  border-top: 4px solid black;
+}
+
+#intro > p{
+  font-size: 20px;
+}
+
+.intro_list > li{
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+div > h2, h1 {
+  margin: 0px;
+  padding-top: 0px;
+}
+
+blockquote{
+  background-color: #4c4239;
+  position: relative;
+  color: white;
+  width: 100%;
+  font-size: 45px;
+  font-family: 'Abril Fatface', cursive;
+  margin: 0px;
+  margin-left: -50px;
+  margin-right: -50px;
+  padding: 50px;
+  padding-left: 60px;
+}
+
+blockquote:before{
+  content: '“';
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  font-size: 130px;
+  font-family: 'Abril Fatface', cursive;
+}
+
+h3{
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+
+h4{
+  font-size: 22px;
+  font-weight: bold;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  font-family: font-family: 'Merriweather', serif;
+}
+
+h5{
+  font-size: 16px;
+  font-style: italic;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+li{
+  font-size: 16px;
+  margin: 5px;
+}
+
+p{
+  padding-bottom: 18px;
+  line-height: 1.5em;
+}
+
+ul{
+  padding-bottom: 20px;
+}
+
+hr{
+  margin: 0px;
+  border: none;
+  border-bottom: 3px solid #222222;
+}
