@@ -1,0 +1,30 @@
+div{
+  font-size: 18px;
+  font-family: Times;
+  font-weight: normal;
+  color: black;
+  width: 300px;
+  border-color: #0A0300;
+  padding: 10px;
+  margin: 20px;
+  box-sizing: border-box;
+  border-bottom: 3px solid black;
+  text-align: justify;
+}
+
+img{
+    width: 80px;
+    margin: 0px;
+    height: 80px;
+    display: inline-block;
+}
+
+.first{
+  float: left;
+  margin-right: 15px;
+}
+
+.second{
+  float: right;
+  margin-left: 15px;
+}

@@ -1,0 +1,37 @@
+body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+header{
+  width: 100%;
+  background-color: cyan;
+  height: 80px;
+}
+
+.content{
+margin: 0px;
+}
+
+.left{
+  background-color: yellow;
+  height: 600px;
+  padding-right: 10px;
+  width: 100px;
+}
+
+.main-content{
+  background-color: red;
+  width: 600px;
+}
+
+
+
+
+/*p{
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  z-index: 1;
+}*/

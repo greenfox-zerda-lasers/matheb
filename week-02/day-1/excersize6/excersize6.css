@@ -1,0 +1,38 @@
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
+nav{
+  background-color: cyan;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  text-align: right;
+  align-items: center;
+}
+
+ul{
+  display: flex;
+  flex-flow: row;
+  text-align: right;
+  align-items: center;
+}
+
+li{
+  list-style: none;
+  padding: 10px;
+  font-size: 18px;
+  font-family: Times;
+  text-align: center;
+}
+
+a:active{
+  background-color: #eeedf9;
+}
+
+.main{
+  padding-left: 20%;
+  padding-right: 20%;
+}

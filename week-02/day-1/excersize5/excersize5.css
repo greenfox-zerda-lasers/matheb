@@ -1,0 +1,29 @@
+.container{
+  display: flex;
+  flex-flow: row;
+  background-color: grey;
+  flex-wrap: wrap;
+  width: 620px;
+}
+
+div > div{
+  width: 30%;
+  height: 120px;
+  background-color: red;
+  border: 5px solid black;
+  margin: 5px;
+  vertical-align: middle;
+}
+
+.snap{
+  display: flex;
+  font-size: 24px;
+  font-family: Arial;
+  color: black;
+  text-align: center;
+  position: relative;
+  right: -14.5px;
+  bottom: -14.5px;
+  justify-content: center;
+  align-items: center;
+}
