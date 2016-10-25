@@ -1,0 +1,190 @@
+/********Mathe Boglarka*********/
+/*******2016.10.25**************/
+/*******Creatin first form - CSS****/
+
+form{
+  font-family: 'Montserrat', sans-serif;
+  margin: 0px;
+  padding: 100px;
+  background-color: #DCD6CD;
+  color: #4A4261;
+  width: 820px;
+  height: 1000px;
+}
+
+label, p{
+  font-size: 10px;
+  font-weight: bold;
+}
+
+label{
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  line-height: 17px;
+  vertical-align: text-top;
+}
+
+h2{
+  color: white;
+  font-size: 12;
+  background-color: #938C97;
+  padding: 12px;
+  align-items: center;
+  width: 300px;
+  border-radius: 3px;
+  font-weight: lighter;
+}
+
+#first{
+  display: flex;
+  justify-content: space-between;
+}
+
+.szemelyes{
+  margin-right: 10px;
+  width: 300px;
+  display: flex;
+  flex-flow: column;
+  text-align: left;
+}
+
+/*.tricky{
+  display: flex;
+}*/
+
+.gender{
+  float: right;
+  /*flex: 1;*/
+}
+
+.brands{
+  margin-top: 0px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.brands2{
+  padding-right: 20px;
+  align-items: center;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="select"],
+input[type="number"]{
+  background-color: white;
+  box-shadow: 1px;
+  width: 300px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+#second{
+  width: 100%;
+}
+
+textarea{
+  background-color: white;
+  box-shadow: 1px;
+  height:145px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 2px;
+  width: 800px;
+  font-family: Arial;
+}
+
+div > input[type="number"]{
+  height:15px;
+  border: 1px solid grey;
+  border-radius: 2px;
+  width: 80px;
+}
+
+.tobb{
+  color: grey;
+  font-weight: lighter;
+}
+
+.bottom{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+button{
+  height: 45px;
+  border-radius: 3px;
+  padding: 10px;
+  text-transform: uppercase;
+  border: 1px solid grey;
+  margin-bottom: 20px;
+  box-shadow: 1px;
+}
+
+input[type="checkbox"], input[type="radio"]{
+  width: 17px;
+  height: 17px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid grey;
+  margin: 1px;
+}
+
+label > strong{
+  color: red;
+  font-weight: bold;
+  font-size: 12;
+}
+
+.felhaszn{
+  color: grey;
+  text-decoration: underline;
+}
+
+.save > button, .button > button{
+  width: 220px;
+  text-align: center;
+  box-shadow: 2px;
+}
+
+.save > button{
+  color: white;
+  background-color: #4C4464;
+}
+
+.reset > button{
+  width: 160px;
+}
+
+#second > input[type="radio"]{
+  width: 17px;
+  height: 17px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid grey;
+  margin-bottom: 30px;
+}
+
+select{
+  -webkit-appearance:none;
+  appearance: none;
+
+  display: block;
+  width: 320px;
+  padding: 10px;
+  color: grey;
+}
+
+.valassz{
+  display: none;
+}
+
+.save, .reset{
+  box-shadow: 2px;
+}
