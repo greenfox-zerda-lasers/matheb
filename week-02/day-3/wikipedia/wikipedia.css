@@ -1,0 +1,191 @@
+/**********Mathe Boglarka************/
+/**********26.10.2016*****************/
+/*******Reproduce a wikipedia page***/
+
+
+/*****Common properties****/
+
+body{
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+  /*background-color: linear-gradient(to bottom white, rgb(220, 220, 220));*/
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(192,192,192,1) 46%, rgba(192,192,192,1) 100%);
+  width: 100%;
+  height: 100%;
+}
+
+body *{
+  background: none;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  color: #0073a8;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+a:visited{
+  color: purple;
+}
+
+/****SIDEBAR properties**/
+
+aside img{
+  height: 180px;
+  width: 135px;
+  background-color: none;
+  padding: 0px;
+}
+
+aside{
+  display: flex;
+  flex-flow: column;
+  font-size: 12px;
+  background: none;
+}
+
+aside > *{
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: left;
+  line-height: 1.5;
+}
+
+aside h2{
+  color: grey;
+  font-size: 12px;
+  border-top: 1px solid black;
+  padding-top: 10px;
+}
+
+
+/******* EVERYTHING TO RIGHT ***/
+
+.everything{
+  display: flex;
+  flex-flow: row;
+  justify-content:flex-start;
+  width: 100%;
+}
+
+.every-right{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/*******TOP NAVIGATION******/
+
+header{
+  display: flex;
+  padding-right: 5px;
+  margin: 0px;
+  flex-flow: row;
+  font-size: 12px;
+  justify-content: space-between;
+  padding-bottom: 0px;
+}
+
+header > nav{
+  display: flex;
+  flex-flow: row;
+  padding-bottom: 0px;
+}
+
+.firstnav{
+  justify-content: flex-start;
+  align-items: flex-end;
+  vertical-align: bottom;
+  padding-left: 0px;
+}
+
+.secondnav >ul{
+  align-items: flex-end;
+  text-align: right;
+  vertical-align: bottom;
+}
+
+header ul{
+  display: inline-block;
+  flex-flow: row;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+header li{
+  display: inline-block;
+  margin: 0px;
+  padding-bottom: 0px;
+  vertical-align: bottom;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+header a{
+  display: block;
+}
+
+.secondnav{
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+}
+
+.tab, .tab > li{
+  border-left: 1px solid skyblue;
+  border-right: 1px solid skyblue;
+  border-bottom: 1px solid skyblue;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(227,254,255,1) 100%);
+  padding-bottom: 0px;
+  height: 30px;
+}
+
+.tab > li{
+  margin: 0px;
+}
+
+.tab:hover, .tab > li:hover{
+  background-color: rgba(255, 0, 0, 0.5);
+  display: block;
+}
+
+.tab:active, .tab > li:active{
+  background-blend-mode: lighten;
+}
+
+input[type="search"]{
+  box-shadow: 1px 1px 3px 0px rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  border: none;
+  background-color: white;
+  height: 25px;
+  background: none;
+}
+
+
+/*********CONTENT*******/
+main{
+  background-color: white;
+  border-left: 1px solid skyblue;
+  border-top: 1px solid skyblue;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+  font-size: 12px;
+
+
+}
+
+main h1{
+  padding-bottom: 5px;
+  border-bottom: 1px solid grey;
+  font-family: "Linux Liberation";
+}
