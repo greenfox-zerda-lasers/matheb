@@ -5,7 +5,8 @@
 # fill the canvas with lines from the edges, every 20 px, to the center.
 
 from tkinter import *
-def draw_to_middle():
+import random
+def draw_to_middle(n):
 
 
     root = Tk()
@@ -15,12 +16,17 @@ def draw_to_middle():
     canvas = Canvas(root, width=w, height=h)
     canvas.pack()
 
-    for i in range(w//20):
-        canvas.create_line(i*20, 0, w/2, h/2, fill='green')
-        canvas.create_line(0, i*20, w/2, h/2, fill='green')
-        canvas.create_line(w, i*20, w/2, h/2, fill='green')
-        canvas.create_line(i*20, h, w/2, h/2, fill='green')
+    for i in range(w//n+1):
+        RR=("%02x"%random.randint(0,255))
+        GG=("%02x"%random.randint(0,255))
+        BB=("%02x"%random.randint(0,255))
+        ge="#"
+        color=ge+RR+GG+BB
+        canvas.create_line(i*n, 0, w/2, h/2, fill=color)
+        canvas.create_line(0, i*n, w/2, h/2, fill=color)
+        canvas.create_line(w, i*n, w/2, h/2, fill=color)
+        canvas.create_line(i*n, h, w/2, h/2, fill=color)
 
     root.mainloop()
 
-draw_to_middle()
+draw_to_middle(10)
