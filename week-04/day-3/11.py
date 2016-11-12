@@ -11,8 +11,8 @@ def draw_square(a, color):
 
     root = Tk()
 
-    w = 300
-    h = 300
+    w = 600
+    h = w
 
     canvas = Canvas(root, width=w, height=h)
     canvas.pack()
@@ -27,8 +27,8 @@ def fill_square(a):
 
     root = Tk()
 
-    w = 300
-    h = 300
+    w = 1000
+    h = 600
 
     canvas = Canvas(root, width=w, height=h)
     canvas.pack()
@@ -49,5 +49,5 @@ def fill_square(a):
 
 
 
-draw_square(100, 'orange')
-fill_square(3)
+#draw_square(100, 'orange')
+fill_square(10)

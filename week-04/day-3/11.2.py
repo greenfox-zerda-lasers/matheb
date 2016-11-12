@@ -42,16 +42,16 @@ def fill_square(a):
 
     for i in range(w//a):
         for j in range(h//b):
-            RR=("%02x"%(255-i*15))
+            RR=("%02x"%(220-i*15))
             GG=("%02x"%(j*10+60))
             BB=("%02x"%(255-i*10))
             ge="#"
             color=ge+RR+GG+BB
             canvas.create_polygon(i*a, j*b, (i+1)*a, 0+j*b, (i+1)*a, (j+1)*b, i*a, (j+1)*b, fill=color)
 
+
     root.mainloop()
 
 
-
-draw_square(100, 'orange')
+#draw_square(100, 'orange')
 fill_square(20)

@@ -1,30 +1,24 @@
 from tkinter import *
 
 root = Tk()
-w = 600
-h = w
-canvas = Canvas(root, width=w, height=h, bg='yellow')
+size = 600
+
+canvas = Canvas(root, width=size, height=size, bg='yellow')
 canvas.pack()
 
-x = 0
-y = 0
+def squares(x, y, size, n):
+    if n == 0:
+        return
+    canvas.create_line(x, y + (size/3), x + size, y + (size/3), fill = 'black')
+    canvas.create_line(x, y + (2*size/3), x + size, y + (2*size/3), fill = 'black')
+    canvas.create_line(x + (size/3), y, x + (size/3), y + size, fill = 'black')
+    canvas.create_line(x + (2*size/3), y, x + (2*size/3), y + size, fill = 'black')
 
-def squares(w, h, n):
-    if n > 2:
-        #vertical lines
-        canvas.create_line(x + (w/3)*n, y, x + (w/3)*n, h, fill='black')
-        canvas.create_line(x + (2*w/3)*n, y, x + (2*w/3)*n, h, fill='black')
+    squares(x + size/3, y, size/3, n-1)
+    squares(x, y + size/3, size/3, n-1)
+    squares(x + size/3, y + 2*size/3, size/3, n-1)
+    squares(x + 2*size/3, y + size/3, size/3, n-1)
 
-        #horizontal lines
-        canvas.create_line(x, y+(h/3)*n, w, y+(h/3)*n, fill='black')
-        canvas.create_line(x, y+(2*h/3)*n, w, y+(2*h/3)*n, fill='black')
-        
-        squares(w/3, h, n-1)
-        squares(2*w/3, h, n-1)
-        squares(w, h/3, n-1)
-        squares(w, 2*h/3, n-1)
-
+squares(0, 0, 600, 5)
 
 root.mainloop()
-
-squares(600, 600, 5)
