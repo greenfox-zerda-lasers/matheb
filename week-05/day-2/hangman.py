@@ -4,10 +4,10 @@ import string
 class Hangman_game():
 
     def __init__(self):
-        self.words = ["krokodil", "ananasz", "nomenklatura", "sokadalom", "barack"]
+        self.words = ["krokodil", "ananasz", "nomenklatura", "sokadalom", "barack", "sikloernyo", "poszata", "alternativ", "elozekeny"]
         self.guess_left = 6
         self.state = "playing"
-        self.secretWord = self.words[random.randint(0,4)]
+        self.secretWord = self.words[random.randint(0,len(self.words)-1)]
         self.guessed = []
         self.wrong = []
 
