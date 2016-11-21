@@ -1,0 +1,7 @@
+Python Elevator Simulation
+=======================
+
+Command line arguments:
+ -m   Move to floor
+ -i   People get in
+ -o   People get off
