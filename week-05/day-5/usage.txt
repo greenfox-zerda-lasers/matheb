@@ -1,0 +1,9 @@
+How to control me, the tiny square robot:
+
+  List of commands:
+  m : memorize - add a new memory entry to the memory
+  l : recall - displays a list memories
+  n : move North
+  s : move South
+  e : move East
+  w : move West
