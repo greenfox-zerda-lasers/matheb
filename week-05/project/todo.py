@@ -16,7 +16,7 @@ class ToDoApp():
     def flow(self):
         if sys.argv[0] == "todo.py" and len(sys.argv)<2:
             self.printUsage()
-        elif (sys.argv[0] == "todo.py") and (sys.argv[1] == "-l"):
+        elif sys.argv[0] == "todo.py" and sys.argv[1] == "-l":
             self.printList()
         elif sys.argv[0] == "todo.py" and sys.argv[1] == "-a":
             if len(sys.argv) < 3:
