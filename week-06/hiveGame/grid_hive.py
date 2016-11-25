@@ -27,7 +27,7 @@ class Game():
         position = [j, i]
         color = ['white', 'yellow', 'white', 'yellow']
         filling = color[random.randint(0,1)]
-        hexa = canvas.create_polygon(x, y, x+a, y, x+a+(a/2), y+a*self.ratio/2, x+a, y+a*self.ratio, x, y+a*self.ratio, x-(a/2), y+a*self.ratio/2, outline='black', fill=filling, tags=[position, filling, 'hexa'])
+        hexa = canvas.create_polygon(x, y, x+a, y, x+a+(a/2), y+a*self.ratio/2, x+a, y+a*self.ratio, x, y+a*self.ratio, x-(a/2), y+a*self.ratio/2, outline='black', fill=filling, tags=[position, filling])
         print(position)
 
 
@@ -72,7 +72,7 @@ class Game():
                 if self.board_coord(n, x0, y0, a)[j][i] != 'null' :
                     x = self.board_coord(n, x0, y0, a)[j][i][0]
                     y = self.board_coord(n, x0, y0, a)[j][i][1]
-                    time.sleep(0.1)
+                    time.sleep(0.05)
                     #color = 1
                     self.creating_hexagon(x, y, a, j, i)
                     canvas.update()
@@ -82,14 +82,19 @@ class Game():
 
     def click(self):
         if canvas.find_withtag(CURRENT):
-            #self.identify('event')
             print(canvas.gettags(CURRENT))
-            pos = canvas.gettags(CURRENT)[0]
-            color = canvas.gettags(CURRENT)[1]
-            if color == 'yellow':
-                canvas.itemconfig(ALL, fill='white')
-            elif color == 'white':
-                canvas.itemconfig(ALL, fill='yellow')
+            #pos = canvas.gettags(ALL)[0]
+            color = canvas.gettags(CURRENT)
+            if 'yellow' in color:
+                canvas.itemconfig(CURRENT, fill='white')
+                canvas.dtag(CURRENT, 'yellow') #deletes the yellow tag!!!
+                canvas.addtag_withtag('white', CURRENT)
+                print(canvas.gettags(CURRENT))
+            elif 'white' in color:
+                canvas.itemconfig(CURRENT, fill='yellow')
+                canvas.dtag(CURRENT, 'white') #deletes the white tag!!!
+                canvas.addtag_withtag('yellow', CURRENT)
+                print(canvas.gettags(CURRENT))
             #if pos[0] < n//2:
             """elif canvas.gettags(str(int(pos[0])-1)+" "+str(int(pos[2])))[1] == 'white':
                 canvas.itemconfig(canvas.find_withtag(str(int(pos[0])-1)+" "+str(int(pos[2]))), fill="yellow")
@@ -114,8 +119,8 @@ class Game():
             if canvas.gettags(str(int(pos[0]))+" "+str(int(pos[2])+1)) == 'white':
                 canvas.itemconfig(canvas.find_withtag(str(int(pos[0]))+" "+str(int(pos[2])+1)), fill="yellow")
             else:
-                canvas.itemconfig(canvas.find_withtag(str(int(pos[0]))+" "+str(int(pos[2])+1)), fill="white")"""
-            #elif pos[0] == n//2:
+                canvas.itemconfig(canvas.find_withtag(str(int(pos[0]))+" "+str(int(pos[2])+1)), fill="white")
+            #elif pos[0] == n//2:"""
 
             #elif pos[0] > n//2:
             #canvas.itemconfig(self.identify('<Button-1>'), fill="blue")
