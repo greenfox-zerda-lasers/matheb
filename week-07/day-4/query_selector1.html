@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: QuerySelector</title>
+</head>
+<body>
+  <div class="container">
+    <div id="b325" class="asteroid">The King</div>
+    <div class="asteroid b326">The Conceited Man</div>
+  </div>
+  <p class="asteroid big">The Businessman</p>
+  <div class="asteroid b329 big">The Lamplighter</div>
+
+  <script>
+    // 1. store the element that says 'The King' in the 'king' variable.
+    // console.log it.
+    var king = document.getElementById("b325");
+    console.log(king.textContent);
+    // 2. store the element that contains the text 'The Conceited Man'
+    // in the 'conceited' variable.
+    // show the result in an 'alert' window.
+    var conceited = document.getElementsByClassName("asteroid b326");
+    alert(conceited[0].textContent);
+    // 3. store 'The Businessman' and 'The Lamplighter'
+    // in the 'businessLamp' variable.
+    // console.log each of them.
+    var businessLamp = document.getElementsByClassName("big");
+    for (i = 0; i < businessLamp.length; i++){
+      console.log(businessLamp[i].textContent);
+    };
+    // 4. store 'The King' and 'The Conceited Man'
+    // in the 'conceitedKing' variable.
+    // alert them one by one.
+    var conceitedKing = document.querySelectorAll(".container .asteroid");
+    for (var i = 0; i < conceitedKing.length; i++){
+      alert(conceitedKing[i].textContent);
+    };
+    // 5. store 'The King', 'The Conceited Man' and 'The Lamplighter'
+    // in the 'noBusiness' variable.
+    // console.log each of them.
+    var noBusiness = document.querySelectorAll("div.asteroid");
+    for (i = 0; i < noBusiness.length; i++){
+      console.log(noBusiness[i].textContent);
+    };
+    // 6. store 'The Businessman' in the 'allBizniss' variable.
+    // show the result in an 'alert' window.
+    var allBizniss = document.querySelectorAll("p.asteroid");
+    alert(allBizniss[0].textContent);
+  </script>
+</body>
+</html>
