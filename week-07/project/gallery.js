@@ -68,6 +68,7 @@ function fillContent(){
     newThumb.setAttribute('src', collection[i]['src']);
     newThumb.setAttribute('class', "thumb");
     newThumb.setAttribute('data-index-Number', i);
+
     if (i === 0){
       newSlide.setAttribute('class', 'slide make_z_index');
     };
@@ -90,6 +91,8 @@ function fillContent(){
 };
 
 fillContent();
+
+
 var current = 0;
 var slides = document.querySelectorAll('.slide');
 
@@ -150,3 +153,45 @@ thumbnailList.forEach(function(item,index){
     thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
   });
 });
+
+var menu = document.querySelectorAll('.thumb')
+console.log(menu);
+var thefirstChild = menu[0];
+console.log(thefirstChild);
+
+
+document.onkeydown = checkKey;
+function checkKey(e) {
+  e = e || window.event;
+  if (e.keyCode == '38') {
+      // up arrow
+    callPrevious();
+  }
+  else if (e.keyCode == '40') {
+      // down arrow
+    callNext();
+  }
+  else if (e.keyCode == '37') {
+     // left arrow
+    callPrevious();
+  }
+  else if (e.keyCode == '39') {
+     // right arrow
+    callNext();
+  }
+}
+//document.addEventListener('keyCode')
+
+
+
+
+/*var newThumbArrowPrev = document.createElement('img');
+newThumbArrowPrev.setAttribute('src', 'arrow.svg');
+newThumbArrowPrev.setAttribute('class', 'thumb previous');
+console.log(newThumbArrowPrev);
+menu.appendChild(newThumbArrowPrev);
+
+var newThumbArrowNext = document.createElement('img');
+newThumbArrowNext.setAttribute('src', 'arrow.svg');
+newThumbArrowNext.setAttribute('class', 'thumb next');
+menu.appendChild(newThumbArrowNext);*/
