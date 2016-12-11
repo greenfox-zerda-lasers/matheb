@@ -134,11 +134,14 @@ p {
 .pics {
   background: none;
   height: 50px;
-  width: 80vw;
+  max-width: 80vw;
+  position: relative;
+  left: calc(50vw - 40vw);
+  top: 0px;
   display: flex;
   flex-flow: row;
   justify-content: center;
-  padding-left: 10vw;
+  overflow: hidden;
 }
 
 .thumb {
@@ -161,4 +164,19 @@ p {
   opacity: 1;
   transition: all 1s ease;
   box-shadow: 1px 2px 2px 0px rgba(181,125,125,1);
+}
+
+img.thumb.next{
+  transform: rotateY(180deg);
+}
+
+.thumb.next, .thumb.previous{
+  width: 15px;
+}
+
+
+.thumb.next:hover, .thumb.previous:hover{
+  box-shadow: none;
+  background-color: 'white';
+  opacity: 0.7;
 }

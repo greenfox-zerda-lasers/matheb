@@ -49,7 +49,8 @@ var collection = [
 
 
 var contentList = document.querySelector(".bigPhoto");
-var footer = document.querySelector(".pics");
+var footer = document.querySelector(".slider");
+var startPos = 0;
 
 function fillContent(){
 
@@ -180,11 +181,14 @@ function checkKey(e) {
     callNext();
   }
 }
-//document.addEventListener('keyCode')
 
+//var nextSlider = document.querySelector('.thumb.next');
 
-
-
+/*function OnMouseIn(nextSlider){
+  footer.style.position = 'relative';
+  footer.style.left = '-100px';
+}*/
+//OnMouseIn();
 /*var newThumbArrowPrev = document.createElement('img');
 newThumbArrowPrev.setAttribute('src', 'arrow.svg');
 newThumbArrowPrev.setAttribute('class', 'thumb previous');
