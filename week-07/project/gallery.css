@@ -6,8 +6,8 @@ body, div, button, img, section, h1, p, h2 {
 
 html {
   width: 100%;
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 12%);
   height: calc(103px + 60vw);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 12%);
 }
 
 body {
@@ -21,7 +21,7 @@ body {
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 30px;
   font-family: 'Aref Ruqaa', serif;
   font-style: italic;
   color: rgb(1, 137, 155);
@@ -34,12 +34,12 @@ h2 {
 
 .nav {
   position: relative;
-  left: 10vw;
+  left: 15vw;
   display: flex;
   flex-flow: row;
   justify-content: center;
-  width: 80vw;
-  height: calc(80vw * 0.65);
+  width: 70vw;
+  height: calc(70vw * 0.50);
   box-shadow: 8px 8px 5px -5px rgba(138,136,138,1);
   overflow: hidden;
 }
@@ -87,6 +87,7 @@ button .next, button .previous {
   width: inherit;
   height: inherit;
   vertical-align: middle;
+  opacity: 0;
 }
 
 .slide > * {
@@ -95,23 +96,25 @@ button .next, button .previous {
 
 div.slide.make_z_index {
   z-index: 5;
+  opacity: 1;
+  transition: all 0.7s;
 }
 
 .slide > img {
   max-width: 75vw;
   height: calc(80vw * ( 3 / 4));
   position: absolute;
-  top: -50px;
-  left: 0px;
+  top: -10vw;
+  left: -10vw;
 }
 
 section {
   width: inherit;
-  height: 15vh;
+  height: 20%;
   background: rgba(0, 0, 0, 0.5);
   color: rgba(255, 255, 255, 0.7);
   position: absolute;
-  top: 0;
+  top: 80%;
   text-align: left;
   font-family: 'Arial';
 }
@@ -144,9 +147,16 @@ p {
   overflow: hidden;
 }
 
+.pics:hover {
+  height: 60px;
+  vertical-align: top;
+  transition: all 1s ease;
+  margin-top: -10px;
+}
+
 .thumb {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   margin-top: 5px;
   margin-left: 3px;
   margin-right: 3px;
@@ -156,7 +166,14 @@ p {
 
 .thumb:hover{
   opacity: 1;
-  transition: all 0.5s ease;
+  margin-top: 5px;
+  padding: 0px;
+  position: relative;;
+  left: -0px;
+  buttom: -10px;
+  width: 50px;
+  height: 50px;
+  transition: all 1s ease;
   box-shadow: 1px 2px 2px 0px rgba(159,182,196,1);
 }
 
@@ -173,7 +190,6 @@ img.thumb.next{
 .thumb.next, .thumb.previous{
   width: 15px;
 }
-
 
 .thumb.next:hover, .thumb.previous:hover{
   box-shadow: none;
