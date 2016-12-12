@@ -101,20 +101,20 @@ var next = document.querySelector('.next');
 function callNext(){
   if (current === slides.length-1){
     slides[current].classList.toggle('make_z_index');
-    thumbnailList[current].style.opacity = 0.4;
-    thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
-      slides[0].classList.toggle('make_z_index');
+    thumbnailList[current+1].style.opacity = 0.4;
+    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
+    slides[0].classList.toggle('make_z_index');
     current = 0;
-    thumbnailList[current].style.opacity = 1;
-    thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
+    thumbnailList[current+1].style.opacity = 1;
+    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
   } else {
   slides[current].classList.toggle('make_z_index');
-  thumbnailList[current].style.opacity = 0.4;
-  thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
+  thumbnailList[current+1].style.opacity = 0.4;
+  thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
   slides[current+1].classList.toggle('make_z_index');
   current++;
-  thumbnailList[current].style.opacity = 1;
-  thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
+  thumbnailList[current+1].style.opacity = 1;
+  thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
   }
 };
 next.addEventListener('click', callNext);
@@ -124,20 +124,20 @@ var previous = document.querySelector('.previous');
 function callPrevious(){
   if (current === 0){
     slides[current].classList.toggle('make_z_index');
-    thumbnailList[current].style.opacity = 0.4;
-    thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
+    thumbnailList[current+1].style.opacity = 0.4;
+    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
     slides[slides.length-1].classList.toggle('make_z_index');
     current = slides.length-1;
-    thumbnailList[current].style.opacity = 1;
-    thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
+    thumbnailList[current+1].style.opacity = 1;
+    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
   } else {
   slides[current].classList.toggle('make_z_index');
-  thumbnailList[current].style.opacity = 0.4;
-  thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
+  thumbnailList[current+1].style.opacity = 0.4;
+  thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
   slides[current-1].classList.toggle('make_z_index');
   current--;
-  thumbnailList[current].style.opacity = 1;
-  thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
+  thumbnailList[current+1].style.opacity = 1;
+  thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
   }
 };
 previous.addEventListener('click', callPrevious);
@@ -145,13 +145,13 @@ previous.addEventListener('click', callPrevious);
 var thumbnailList = document.querySelectorAll('.thumb');
 thumbnailList.forEach(function(item,index){
   thumbnailList[index].addEventListener('click', function(e) {
-    thumbnailList[current].style.opacity = 0.4;
-    thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
+    thumbnailList[current+1].style.opacity = 0.4;
+    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
   	this.style.opacity = 1;
     slides[current].classList.toggle('make_z_index');
     current = parseInt(this.dataset.indexNumber);
     slides[current].classList.toggle('make_z_index');
-    thumbnailList[current].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
+    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
   });
 });
 
