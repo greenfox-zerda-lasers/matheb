@@ -23,17 +23,13 @@
       circle.style.position = 'absolute';
       circle.style.left = pos+'px';
       circle.style.top = '0px';
-      function move(){
-        if (pos < 1000){
+      function moveRight(){
+        if (pos <= 1100){
           pos += 10;
           circle.style.left = pos+'px';
-          requestAnimationFrame(move);
-        } /*else if (pos >= 1000){
-          pos -= 10;
-          circle.style.left = pos+'px';
-          requestAnimationFrame(move);
-        } */
+          requestAnimationFrame(moveRight);
+        }
       };
-      move();
+      moveRight();
     </script>
   </body>
