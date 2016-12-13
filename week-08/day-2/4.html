@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- imitate the setInterval functionality with setTimeouts (recreate the previous excersize) -->
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>Task4</title>
+  </header>
+
+  <body>
+    <script>
+    var x
+    var y
+    window.addEventListener('mousemove', mouseX);
+    window.addEventListener('mousemove', mouseY);
+    function mouseX(e){
+      x = e.clientX;
+    };
+    function mouseY(e){
+      y = e.clientY;
+    };
+    function getCoord(){
+      console.log('X: '+x+' Y: '+y);
+      setTimeout(getCoord, 1500);
+    };
+
+    setTimeout(getCoord, 1500);
+
+    </script>
+  </body>

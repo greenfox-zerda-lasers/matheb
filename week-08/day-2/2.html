@@ -1,0 +1,28 @@
+
+<!doctype html>
+<!-- create a function that starts a setTimeout with a 3 second delay.
+- create a button with an event listener that can cancel the setTimeout -->
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>Task2</title>
+  </header>
+
+  <body>
+    <button></button>
+    <script>
+
+    function showMessage(){
+      alert('3 seconds passed');
+    };
+
+    var box = setTimeout(showMessage, 3000);
+
+    var button = document.querySelector('button');
+    button.textContent = 'STOP';
+
+    button.addEventListener('click', function(e){
+      clearTimeout(box);
+    })
+    </script>
+  </body>

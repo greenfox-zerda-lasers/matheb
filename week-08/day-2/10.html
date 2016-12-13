@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- // Create a circle with 100px diameter (use border radius)
+//  - Make it move from left to right edge
+//  - use requestAnimationFrame -->
+
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>Task10</title>
+  </header>
+
+  <body>
+    <script>
+      var circle = document.createElement('div');
+      var body = document.querySelector('body');
+      var pos = 0;
+      var requestAnimationFrame = window.requestAnimationFrame;
+      body.appendChild(circle);
+      circle.style.borderRadius = '50%';
+      circle.style.width = '100px';
+      circle.style.height = '100px';
+      circle.style.border = '2px solid black';
+      circle.style.position = 'absolute';
+      circle.style.left = pos+'px';
+      circle.style.top = '0px';
+      function move(){
+        if (pos < 1000){
+          pos += 10;
+          circle.style.left = pos+'px';
+          requestAnimationFrame(move);
+        } /*else if (pos >= 1000){
+          pos -= 10;
+          circle.style.left = pos+'px';
+          requestAnimationFrame(move);
+        } */
+      };
+      move();
+    </script>
+  </body>

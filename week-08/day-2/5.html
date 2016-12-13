@@ -1,0 +1,18 @@
+<!doctype html>
+<!-- Add a click event listener to a <button> and console.log its innerHTML -->
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>Task5</title>
+  </header>
+
+  <body>
+    <button><a>Log this</a></button>
+    <script>
+      var button = document.querySelector('button');
+      button.addEventListener('click', log);
+      function log(){
+        console.log(button.innerHTML);
+      };
+    </script>
+  </body>

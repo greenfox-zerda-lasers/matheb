@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- Add an event listener to the window and display the mouse's x, y coordinates-->
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>Task6</title>
+  </header>
+
+  <body>
+    <script>
+    var x
+    var y
+    window.addEventListener('mousemove', getCoord);
+    function getCoord(e){
+      x = e.clientX;
+      y = e.clientY;
+      console.log('X: '+x+' Y: '+y);
+    };
+    function getCoord(){
+      setTimeout(getCoord, 1500);
+    };
+
+    setTimeout(getCoord, 1500);
+
+    </script>
+  </body>
