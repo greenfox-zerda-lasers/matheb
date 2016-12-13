@@ -1,6 +1,7 @@
 var candies = 0;
 var lollypops = 0;
 var rate = 0;
+var speed = 1000;
 //🍭
 
 var showCandies = document.querySelector('.candies');
@@ -9,6 +10,7 @@ var showRate = document.querySelector('.speed');
 
 var createButton = document.querySelector(".create-candies");
 var buyButton = document.querySelector(".buy-lollypops");
+var rainButton = document.querySelector(".candy-machine");
 
 function addCandy(){
   candies += 1;
@@ -31,11 +33,16 @@ function buyLolly(){
 createButton.addEventListener('click', addCandy);
 buyButton.addEventListener('click', buyLolly);
 
+function rain(){
+  speed /= 10;
+}
+rainButton.addEventListener('click', rain);
+
 function generateCandy(){
   candies += Math.floor(lollypops/10);
   showCandies.textContent = candies;
-  rate = Math.floor(lollypops/10);
+  rate = Math.floor(lollypops/10)*(1000/speed);
   showRate.textContent = rate;
-  setTimeout(generateCandy, 1000);
+  setTimeout(generateCandy, speed);
 };
-setTimeout(generateCandy, 1000);
+setTimeout(generateCandy, speed);
