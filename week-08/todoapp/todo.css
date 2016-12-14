@@ -39,6 +39,7 @@ h1 {
 }
 
 .input[type='text'] {
+  border-radius: 3px;
   padding: 0px;
   margin: 0px;
   height: 46px;
@@ -62,7 +63,7 @@ h1 {
 .add {
   height: 50px;
   width: 75px;
-  border-radius: 1px;
+  margin-left: 3px;
   position: relative;
   right: 5px;
   bottom: 0px;
@@ -99,7 +100,7 @@ h1 {
   padding-left: 5px;
   padding-right: 5px;
   font-size: 20px;
-  line-height: 2.2;
+  line-height: 1;
   color: #cecece;
 }
 
@@ -120,9 +121,9 @@ h1 {
 
 .complete {
   margin-left: 10px;
+  padding-top: 2px;
   font-size: 20px;
   color: rgb(247, 247, 247);
-  margin-top: 9px;
   border-radius: 50%;
   border: 1px solid grey;
   z-index: 2;
