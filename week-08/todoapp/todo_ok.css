@@ -98,26 +98,20 @@ h1 {
 .todo_item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-flow: row;
   width: 345px;
   height: 30px;
-  padding: 5px;
-  margin-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
   overflow: hidden;
-  color: #37404d;
-}
-
-.todo_item:hover {
-  /*border: 2px solid rgba(80, 227, 194, 0.3);
-  border-radius: 5px;*/
-  color: #00ffe9;
 }
 
 label {
   font-family: Lato-Regular, sans-serif;
   font-size: 20px;
   line-height: 1;
+  color: #cecece;
 }
 
 .del_icon, .complete{
@@ -128,8 +122,6 @@ label {
 
 .del {
   background: transparent;
-  display: flex;
-  align-items: center;
 }
 
 .del:hover {
