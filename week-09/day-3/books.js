@@ -12,7 +12,7 @@ TodoApp.use('/', express.static('./public'));
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password:'P8r8gl1d1ng',
+  password:'alma',
   database: 'bookstore',
 });
 
