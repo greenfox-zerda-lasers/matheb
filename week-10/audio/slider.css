@@ -13,11 +13,15 @@ body {
 }
 
 #controls {
+  position: relative;
+  height: 40px;
+  top: -40px;
   width: 600px;
   display: flex;
   flex-flow: row;
-  background-color: #f7f8f9;
+  background-color: white;
   vertical-align: middle;
+  align-items: center;
 }
 
 #controls > * {
@@ -42,7 +46,7 @@ body {
   display: flex;
   flex-flow: row;
   justify-content: center;
-  vertical-align: middle;
+  align-items: center;
 }
 
 .whole_volume_slider {
@@ -71,7 +75,6 @@ body {
 
 .rangeSlider {
   position: relative;
-  top: 10px;
 }
 
 .rangeSlider--disabled {

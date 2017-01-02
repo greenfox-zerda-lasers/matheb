@@ -3,6 +3,7 @@
   <header>
     <meta charset="utf-8">
     <link href="player.css" rel="stylesheet" type="text/css">
+    <link href="slider.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
   </header>
 
@@ -34,7 +35,7 @@
       </div>
 
     </div>
-    <audio preload="auto" controls></audio>
+    <audio preload="auto" ></audio>
     <script src="player.js"></script>
 
     <div id="controls">
@@ -57,59 +58,7 @@
     <script src="rangeSlider.js"></script>
     <script src="slider.js"></script>
     <!-- <script src="player.js"></script> -->
-    <script>
-      (function () {
+    <script src="initial_slider.js"></script>
 
-        var selector = '[data-rangeSlider]',
-          elements = document.querySelectorAll(selector);
-
-          // Example functionality to demonstrate a value feedback
-        function valueOutput(element) {
-          var value = element.value,
-            output = element.parentNode.getElementsByTagName('output')[0];
-          output.innerHTML = value;
-        }
-
-        for (var i = elements.length - 1; i >= 0; i--) {
-          valueOutput(elements[i]);
-        }
-
-        Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
-          el.addEventListener('input', function (e) {
-            valueOutput(e.target);
-          }, false);
-        });
-
-
-        // Basic rangeSlider initialization
-        rangeSlider.create(elements, {
-          min: 0,
-          max: 100,
-          value : 0,
-          borderRadius : 3,
-          buffer : 10,
-          minEventInterval : 1000,
-
-          // Callback function
-          onInit: function () {
-          },
-
-          // Callback function
-          onSlideStart: function (value, percent, position) {
-            console.info('onSlideStart', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
-          },
-
-          // Callback function
-          onSlide: function (value, percent, position) {
-            console.log('onSlide', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
-          },
-
-          // Callback function
-          onSlideEnd: function (value, percent, position) {
-            console.warn('onSlideEnd', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
-          }
-        });
-
-      })();
   </script>
   </body>
