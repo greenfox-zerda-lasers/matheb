@@ -71,16 +71,51 @@ rangeSlider.create(slider[1], {
 } */
 
 var audio = new Audio();
-audio.src = 'purple.mp3';
+audio.src = musicList[0]['src'];
 audio.volume = 1;
 audio.play();
 var playButton = document.querySelector("#play-pause");
-console.log(playButton)
+var track_length = document.querySelector(".track-length");
+var time = document.querySelector(".time");
+track_length.textContent = audio.duration;
+console.log(audio.duration);
 
 audio.addEventListener('ended', function(e)
 {
   audio.pause();
   console.log("ended event happened");
+}, false);
+
+var tracks = document.querySelectorAll(".track");
+var playlist_divs = document.querySelectorAll(".playlist_item");
+var currentTrack = 0;
+var currentPlaylist = 0;
+
+console.log(tracks);
+tracks.forEach(function(item,index){
+  tracks[index].addEventListener('click', function(e) {
+    tracks[currentTrack].classList.toggle('active')
+    currentTrack = parseInt(this.dataset.indexNumber);
+    tracks[currentTrack].classList.toggle('active')
+    audio.setAttribute('src', musicList[currentTrack]['src']);
+    audio.play();
+    track_length.textContent = audio.duration;
+  });
+});
+
+playButton.addEventListener('click', function(e)
+{
+  if(audio.paused)
+  {
+    audio.play();
+    playButton.setAttribute('src', 'buttons/pause.svg');
+  }
+  else
+  {
+    audio.pause();
+    playButton.setAttribute('src', 'buttons/play.svg');
+  }
+
 }, false);
 
 // playButton.addEventListener("click", function()
@@ -89,11 +124,11 @@ audio.addEventListener('ended', function(e)
 //   console.log("play event happened");
 // }, true);
 
-playButton.addEventListener("click", function()
-{
-  audio.pause();
-  console.log("pause event happened");
-}, true);
+// playButton.addEventListener("click", function()
+// {
+//   audio.pause();
+//   console.log("pause event happened");
+// }, true);
 
 audio.addEventListener("canplaythrough", function()
 {

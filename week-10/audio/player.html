@@ -10,13 +10,14 @@
     <div class="whole_window">
 
       <div class="left">
-        <div class="artwork"></div>
+        <div class="artwork"><img src="img/music-placeholder.png" /></div>
 
         <div class="logo">
           <img src="img/foxplayer.png" />
         </div>
 
         <div class="playlists">
+          <img src="buttons/add.png" class="add_icon" />
           <h2>Playlists</h2>
           <div class="playlist_elements">
             <!-- <div class="playlist_item">All tracks</div> -->
@@ -26,8 +27,14 @@
 
       <div class="right">
         <div class="currently_playing">
-          <h2>Title</h2>
-          <p class="musician">Musician</p>
+          <div class="top_title">
+            <h2 class="current_title">Title</h2>
+            <p class="musician">Musician</p>
+          </div>
+          <div class="icons">
+            <img src="buttons/add.png" class="add_icon" />
+            <img src="buttons/star.svg" class="star_icon" />
+          </div>
         </div>
 
         <div class="tracks"></div>
@@ -37,7 +44,7 @@
     <audio preload="auto" controls></audio>
     <script src="player.js"></script>
 
-    <div id="controls">
+    <!-- <div id="controls">
       <img type="button" id="rewind" src="buttons/rewind.svg" />
       <img type="button" id="play-pause" src="buttons/play.svg" />
       <img type="button" id="mute" src="buttons/forward.svg"/>
@@ -52,7 +59,7 @@
         <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
         <output></output>
       </div>
-    </div>
+    </div> -->
 
     <script src="rangeSlider.js"></script>
     <script src="slider.js"></script>

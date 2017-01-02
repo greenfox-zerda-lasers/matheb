@@ -43,7 +43,7 @@ audio {
   width: 50%;
 }
 
-.artwork {
+.artwork > * {
   float: right;
   width: 127px;
   height: 127px;
@@ -52,6 +52,45 @@ audio {
 
 .logo, .playlists > h2, .currently_playing > *, .tracks > * {
   padding: 5px 15px 5px 15px;
+}
+
+.currently_playing {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  height: 80px;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.add_icon {
+  opacity: 0.6;
+  height: 30px;
+  width: 30px;
+}
+
+.star_icon, .add_icon {
+  margin-right: 5px;
+  margin-top: 3px;
+  float: right;
+}
+
+.star_icon {
+  height: 20px;
+  width: 20px;
+}
+
+.star_icon:hover, .add_icon:hover{
+  background-color: #1bf7d9;
+  border-radius: 50%;
+  color: black;
+  opacity: 0.5;
 }
 
 h2 {
@@ -70,6 +109,10 @@ h2 {
   color: #5f6263;
   font-size: 14px;
   font-weight: bold;
+}
+
+.track:hover {
+  background-color: #95dce5;
 }
 
 .playlist_item {

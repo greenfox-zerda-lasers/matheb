@@ -11,13 +11,14 @@
     <div class="whole_window">
 
       <div class="left">
-        <div class="artwork"></div>
+        <div class="artwork"><img src="img/music-placeholder.png" /></div>
 
         <div class="logo">
           <img src="img/foxplayer.png" />
         </div>
 
         <div class="playlists">
+          <img src="buttons/add.png" class="add_icon" />
           <h2>Playlists</h2>
           <div class="playlist_elements">
             <!-- <div class="playlist_item">All tracks</div> -->
@@ -27,8 +28,14 @@
 
       <div class="right">
         <div class="currently_playing">
-          <h2>Title</h2>
-          <p class="musician">Musician</p>
+          <div class="top_title">
+            <h2 class="current_title">Title</h2>
+            <p class="musician">Musician</p>
+          </div>
+          <div class="icons">
+            <img src="buttons/add.png" class="add_icon" />
+            <img src="buttons/star.svg" class="star_icon" />
+          </div>
         </div>
 
         <div class="tracks"></div>
@@ -43,7 +50,7 @@
       <img type="button" id="play-pause" src="buttons/play.svg" />
       <img type="button" id="mute" src="buttons/forward.svg"/>
       <div class="whole_slider">
-        <output></output>
+        <output class="time"></output>
         <input type="range" id="track-bar" min="0" max="100" step="1" data-rangeSlider>
         <div class="track-length">3:15</div>
       </div>
@@ -59,6 +66,11 @@
     <script src="slider.js"></script>
     <!-- <script src="player.js"></script> -->
     <script src="initial_slider.js"></script>
+
+    <script src="vex/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="vex/vex.css" />
+    <link rel="stylesheet" href="vex/vex-theme-os.css" />
 
   </script>
   </body>

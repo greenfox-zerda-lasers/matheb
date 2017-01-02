@@ -1,15 +1,18 @@
 var musicList = [
   {
     title: "Never give up",
-    src: "ars.mp3"
+    src: "ars.mp3",
+    musician: "Ars Sonor"
   },
   {
     title: "Purple drift",
-    src: "purple.mp3"
+    src: "purple.mp3",
+    musician: "Organoid"
   },
   {
     title: "Doctor Talos answers the door",
-    src: "doctor.mp3"
+    src: "doctor.mp3",
+    musician: "Doctor Turtle"
   },
 ];
 
@@ -19,6 +22,8 @@ var playLists = document.querySelector(".playlist_elements")
 var trackList = document.querySelector(".tracks")
 var audio = document.querySelector("audio");
 console.log(trackList);
+
+
 
 function loadTracks(){
   for (var i = 0; i < musicList.length; i++){
@@ -70,13 +75,20 @@ var playlist_divs = document.querySelectorAll(".playlist_item");
 var currentTrack = 0;
 var currentPlaylist = 0;
 
+var title = document.querySelector(".current_title");
+var musician = document.querySelector(".musician");
+title.textContent = musicList[currentTrack]['title'];
+musician.textContent = musicList[currentTrack]['musician'];
+
 console.log(tracks);
 tracks.forEach(function(item,index){
   tracks[index].addEventListener('click', function(e) {
     tracks[currentTrack].classList.toggle('active')
     currentTrack = parseInt(this.dataset.indexNumber);
     tracks[currentTrack].classList.toggle('active')
-    audio.setAttribute('src', musicList[current]['src']);
+    audio.setAttribute('src', musicList[currentTrack]['src']);
+    title.textContent = musicList[currentTrack]['title'];
+    musician.textContent = musicList[currentTrack]['musician'];
   });
 });
 
@@ -87,3 +99,18 @@ playlist_divs.forEach(function(item,index){
     playlist_divs[currentPlaylist].classList.toggle('active')
   });
 });
+
+var vex = require('vex.js')
+vex.registerPlugin(require('vex-dialog'))
+vex.defaultOptions.className = 'vex-theme-os'
+
+vex.dialog.confirm({
+  message: 'Are you absolutely sure you want to destroy the alien planet?',
+  callback: function (value) {
+    if (value) {
+      console.log('Successfully destroyed the planet.')
+    } else {
+      console.log('Chicken.')
+    }
+  }
+})
