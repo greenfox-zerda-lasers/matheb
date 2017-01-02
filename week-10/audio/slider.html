@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <header>
+    <meta charset="utf-8">
+    <link href="slider.css" rel="stylesheet" type="text/css">
+  </header>
+
+  <body>
+    <div id="controls">
+      <img type="button" id="rewind" src="buttons/rewind.svg" />
+      <img type="button" id="play-pause" src="buttons/play.svg" />
+      <img type="button" id="mute" src="buttons/forward.svg"/>
+      <div class="whole_slider">
+        <output></output>
+        <input type="range" id="track-bar" min="0" max="100" step="1" data-rangeSlider>
+        <div class="track-length">3:15</div>
+      </div>
+      <img type="button" id="shuffle" src="buttons/shuffle.svg" />
+      <img type="button" id="volume" src="buttons/volume.svg"/>
+      <div class="whole_volume_slider">
+        <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+        <output></output>
+      </div>
+    </div>
+
+    <script src="rangeSlider.js"></script>
+    <script src="slider.js"></script>
+    <!-- <script src="player.js"></script> -->
+    <script>
+      (function () {
+
+        var selector = '[data-rangeSlider]',
+          elements = document.querySelectorAll(selector);
+
+          // Example functionality to demonstrate a value feedback
+        function valueOutput(element) {
+          var value = element.value,
+            output = element.parentNode.getElementsByTagName('output')[0];
+          output.innerHTML = value;
+        }
+
+        for (var i = elements.length - 1; i >= 0; i--) {
+          valueOutput(elements[i]);
+        }
+
+        Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
+          el.addEventListener('input', function (e) {
+            valueOutput(e.target);
+          }, false);
+        });
+
+
+        // Basic rangeSlider initialization
+        rangeSlider.create(elements, {
+          min: 0,
+          max: 100,
+          value : 0,
+          borderRadius : 3,
+          buffer : 10,
+          minEventInterval : 1000,
+
+          // Callback function
+          onInit: function () {
+          },
+
+          // Callback function
+          onSlideStart: function (value, percent, position) {
+            console.info('onSlideStart', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+          },
+
+          // Callback function
+          onSlide: function (value, percent, position) {
+            console.log('onSlide', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+          },
+
+          // Callback function
+          onSlideEnd: function (value, percent, position) {
+            console.warn('onSlideEnd', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+          }
+        });
+
+      })();
+  </script>
+  </body>
