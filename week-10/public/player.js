@@ -181,3 +181,20 @@ addButton.addEventListener('click', function(){
     dialogInput.style.visibility = "hidden";
   }
 })
+
+// AJAX CALLLSS TRY
+
+// function getPlayList(){
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('GET', "localhost:3000/playlists", true);
+//   xhr.setRequestHeader('Content-Type', 'application/json');
+//   xhr.send();
+//   xhr.onreadystatechange = function (){
+//     if (xhr.readyState === XMLHttpRequest.DONE){
+//       var Playlists = JSON.parse(xhr.response);
+//       var Listlength = TodoList.length;
+//       loadPlayList(PlayLists, Listlength);
+//     }
+//   }
+// };
+// getPlayList();

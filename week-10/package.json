@@ -1,9 +1,12 @@
 {
   "name": "audio",
   "version": "1.0.0",
-  "main": "initial_slider.js",
+  "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "browserify": "^13.1.1",
+    "express": "^4.14.0",
+    "mysql": "^2.12.0",
     "rangeslider-js": "^2.1.1",
     "rangeslider-pure": "^0.3.11",
     "vex": "0.0.4",
@@ -15,5 +18,8 @@
   },
   "author": "",
   "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
   "description": ""
 }
