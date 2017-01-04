@@ -2,8 +2,10 @@
 var mysql = require("mysql");
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 var musicPlayer = express();
+musicPlayer.use(cors());
 
 musicPlayer.use(bodyParser.json());
 musicPlayer.use('/', express.static('./public'));
@@ -37,19 +39,21 @@ musicPlayer.get('/playlists', function get(req, resp) {
 musicPlayer.post('/playlists', function add(req, resp) {
   con.query('INSERT INTO playlist SET ?', [{playlist: req.body.name}], function(err,res){
     if(err) throw err;
-    resp.send(req.body.name);
+    con.query('SELECT * FROM playlist', function(req, rows){
+      if(err) throw err;
+      resp.send(rows);
+    });
   });
 });
 
 musicPlayer.delete('/playlist/:id', function del(req, resp) {
-  con.query(
-    'DELETE FROM playlist WHERE id = ?',
-    [req.params.id],
-    function (err, result) {
-      if (err) throw err;
-    }
-  );
-  resp.send(req.params.id);
+  con.query('DELETE FROM playlist WHERE id = ?', [req.params.id], function (err, result) {
+    if (err) throw err;
+    con.query('SELECT * FROM playlist', function(req, rows){
+      if(err) throw err;
+      resp.send(rows);
+    });
+  });
 });
 
 musicPlayer.listen(3000, function(){

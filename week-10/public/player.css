@@ -108,7 +108,7 @@ h2 {
 .playlist_item, .track {
   color: #5f6263;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 #track:hover {
@@ -123,14 +123,16 @@ h2 {
 
 .playlist_item {
   padding: 5px 15px 5px 15px;
-  align-items: center;
+  vertical-align: middle;
+  height: 24px;
 }
 
 .playlist_item:hover {
   outline: 1px solid #695877;
+  background-color: #d0c1dd;
 }
 
-.active {
+.playlist_item.active {
   background-color: #d0c1dd;
   outline: 1px solid #695877;
 }
@@ -207,4 +209,18 @@ input[type='text']{
 .del:active {
   background-color: lightgrey;
   border-radius: 3px;
+}
+
+.playlist_elements {
+  overflow-y: scroll;
+  width: 100%;
+  height: 230px;
+}
+
+.darker {
+  background-color: lightgrey;
+}
+
+.transparent {
+  background-color: #f2f6f7;
 }

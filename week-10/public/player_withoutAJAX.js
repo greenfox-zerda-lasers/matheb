@@ -67,20 +67,13 @@ loadTracks();
 var dialog = document.querySelector(".addToPlaylist");
 var dialogInput = document.querySelector(".addNewPlaylist");
 
-var tracks = document.querySelectorAll(".track");
-var playlist_divs = document.querySelectorAll(".playlist_item");
-var playlist_elements = document.querySelector(".playlist_elements");
-var currentTrack = 0;
-var currentPlaylist = 0;
-
-function loadPlaylists(Playlists, Listlength){
-  playList.innerHTML = '';
-  for (var i = 0; i < Listlength; i++){
+function loadPlaylists(){
+  for (var i = 0; i < playList.length; i++){
     var newPlaylist = document.createElement('div');
     var newPlaylistName = document.createElement('div');
     var newTrackButton = document.createElement('div');
     newPlaylist.setAttribute('data-index-Number', i);
-    newPlaylist.textContent = Playlists[i]['playlist'];
+    newPlaylist.textContent = playList[i]['name'];
     if (i > 1){
       var newDelButton = document.createElement('img')
       newDelButton.setAttribute('src', "buttons/quit_icon.png");
@@ -88,25 +81,30 @@ function loadPlaylists(Playlists, Listlength){
       newPlaylist.appendChild(newDelButton)
     }
     newTrackButton.setAttribute('class', 'button');
-    newTrackButton.textContent = Playlists[i]['playlist'];
-    if (i === 0 ){
-      newPlaylist.setAttribute('class', 'playlist_item active darker');
-    } else if (i%2 === 0) {
-      newPlaylist.setAttribute('class', 'playlist_item  darker')
+    newTrackButton.textContent = playList[i]['name'];
+    if (i === 0){
+      newPlaylist.setAttribute('class', 'playlist_item active');
     } else {
-      newPlaylist.setAttribute('class', 'playlist_item transparent');
+      newPlaylist.setAttribute('class', 'playlist_item');
     }
-    // newPlaylist.addEventListener('click', function(e) {
-    //   Playlists[currentPlaylist].classList.toggle('active')
-    //   currentTrack = parseInt(this.dataset.indexNumber);
-    //   Playlists[currentPlaylist].classList.toggle('active')
-    // }
+    if (i%2 === 0){
+      newPlaylist.style.backgroundColor = "lightgrey";
+    } else {
+      newPlaylist.style.background = "transparent";
+    }
     playLists.appendChild(newPlaylist);
     dialog.appendChild(newTrackButton);
   }
   // audio.setAttribute('src', musicList[0]['src']);
 }
-//loadPlaylists();
+loadPlaylists();
+
+
+var tracks = document.querySelectorAll(".track");
+var playlist_divs = document.querySelectorAll(".playlist_item");
+var playlist_elements = document.querySelector(".playlist_elements");
+var currentTrack = 0;
+var currentPlaylist = 0;
 
 var title = document.querySelector(".current_title");
 var musician = document.querySelector(".musician");
@@ -159,92 +157,44 @@ addFavorite.addEventListener('click', function(){
   alert('Do you want to add the Track to Favourites?');
 })
 
-function createPlaylistDiv (input, Listlength) {
-  var newPlaylist = document.createElement('div');
-  newPlaylist.setAttribute('data-index-Number', Listlength);
-  newPlaylist.setAttribute('class', 'playlist_item');
-  newPlaylist.textContent = input;
-  if (playList.length%2 === 0){
-    newPlaylist.style.backgroundColor = "lightgrey";
-  } else {
-    newPlaylist.style.background = "transparent";
-  }
-}
-
-function createDelDiv() {
-  var newDelButton = document.createElement('img')
-  newDelButton.setAttribute('src', "buttons/quit_icon.png");
-  newDelButton.setAttribute('class', "del");
-  newPlaylist.appendChild(newDelButton)
-  playlist_elements.appendChild(newPlaylist);
-}
-
-// AJAX CALLLSS TRY
-
-function getPlayList(){
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', "http://localhost:3000/playlists", true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send();
-  xhr.onreadystatechange = function (){
-    if (xhr.readyState === XMLHttpRequest.DONE){
-      var Playlists = JSON.parse(xhr.response);
-      var Listlength = Playlists.length;
-      loadPlaylists(Playlists, Listlength);
-    }
-  }
-};
-getPlayList();
-
 console.log(playlist_divs)
 var addButton = document.querySelector(".add");
 addButton.addEventListener('click', function(){
-  var req = new XMLHttpRequest();
   var input = document.querySelector("input.options").value;
+  console.log(input);
   if (input != ''){
-    name = input;
-    req.open('POST', "http://localhost:3000/playlists", true);
-    req.setRequestHeader("Content-Type", "application/json");
-    req.onreadystatechange = function (){
-      if (req.readyState === XMLHttpRequest.DONE){
-        var Playlists = JSON.parse(req.response);
-        var Listlength = Playlists.length;
-        for (var i = 0; i < Listlength; i++){
-          var newPlaylist = document.createElement('div');
-          newPlaylist.setAttribute('data-index-Number', Listlength);
-          newPlaylist.setAttribute('class', 'playlist_item');
-          newPlaylist.textContent = Playlists[i]['playlist'];
-          if (i%2 === 0){
-            newPlaylist.setAttribute('class', 'darker');
-          } else {
-            newPlaylist.setAttribute('class', 'transparent');
-          }
-          var newDelButton = document.createElement('img')
-          newDelButton.setAttribute('src', "buttons/quit_icon.png");
-          newDelButton.setAttribute('class', "del");
-          newDelButton.addEventListener('click', removePlaylist(item, loadPlayList));
-        }
-        newPlaylist.appendChild(newDelButton)
-        playlist_elements.appendChild(newPlaylist);
-        dialogInput.style.visibility = "hidden";
-      }
+    var newPlaylist = document.createElement('div');
+    newPlaylist.setAttribute('data-index-Number', playList.length);
+    newPlaylist.setAttribute('class', 'playlist_item');
+    newPlaylist.textContent = input;
+    if (playList.length%2 === 0){
+      newPlaylist.style.backgroundColor = "lightgrey";
+    } else {
+      newPlaylist.style.background = "transparent";
     }
+    var newDelButton = document.createElement('img')
+    newDelButton.setAttribute('src', "buttons/quit_icon.png");
+    newDelButton.setAttribute('class', "del");
+    newPlaylist.appendChild(newDelButton)
+    playlist_elements.appendChild(newPlaylist);
+    playList.push(input);
+    dialogInput.style.visibility = "hidden";
   }
-  req.send(JSON.stringify({name: name}));
 })
 
-function removePlaylist(item, callback){
-  var req = new XMLHttpRequest();
-  req.open('DELETE', "http://localhost:3000/playlists" +item.id, true);
-  req.setRequestHeader("Accept", "application/json; charset=utf-8");
-  req.onreadystatechange = function (){
-    if (req.readyState === XMLHttpRequest.DONE){
-      console.log(req.response);
-      var Playlists = JSON.parse(xhr.response);
-      var Listlength = Playlists.length;
-      //loadPlaylists(Playlists, Listlength);
-      callback();
-    }
-  }
-  req.send();
-};
+// AJAX CALLLSS TRY
+
+// function getPlayList(){
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('GET', "localhost:3000/playlists", true);
+//   xhr.setRequestHeader('Content-Type', 'application/json');
+//   xhr.send();
+//   xhr.onreadystatechange = function (){
+//     if (xhr.readyState === XMLHttpRequest.DONE){
+//       var Playlists = JSON.parse(xhr.response);
+//       var Listlength = TodoList.length;
+//       loadPlayList(PlayLists, Listlength);
+//     }
+//   }
+// };
+// getPlayList();
