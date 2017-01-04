@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>"Task4"</title>
+  </header>
+
+  <body>
+
+    <form id="form">
+      <input type="text" name="name" placeholder="Your name">
+      <input type="text" name="score" placeholder="Score you give">
+      <input type="text" name="movie" placeholder="Movie">
+      <button type="submit">submit</button>
+    </form>
+
+    <script>
+    var movie = { Title: 'Dead Poets society', Rating: '9', Name: 'Bogi'};
+
+    var request = new XMLHttpRequest();
+    request.open('POST', "https://sheetsu.com/apis/v1.0/7654fbe24554", true);
+    request.setRequestHeader("Content-Type: application/json");
+    request.send(JSON.stringify(movie));
+
+    </script>
+  </body>

@@ -12,7 +12,7 @@ TodoApp.use('/', express.static('./public'));
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password:'alma',
+  password:'P8r8gl1d1ng',
   database: 'todos',
 });
 
@@ -51,7 +51,7 @@ TodoApp.post('/todos', function add(req, resp) {
     if(err) throw err;
     resp.send(req.body.text);
   });
-});
+}); 
 
 TodoApp.put('/todos/:id', function change(req, resp) {
   con.query( 'UPDATE todos SET completed = ? Where id = ?', [req.body.completed, req.params.id], function (err, result) {

@@ -37,18 +37,31 @@ getList();
 function addTodoItem(){
   var req = new XMLHttpRequest();
   input = document.querySelector('input').value;
-  task = {text: input};
-  console.log(task);
-  req.open('POST', url, true);
-  req.setRequestHeader("Content-Type", "application/json");
-  req.onreadystatechange = function (){
-    if (req.readyState === XMLHttpRequest.DONE){
-      getList();
+  if (input == ''){
+    alert('What do you want to add to your list?')
+  } else {
+    task = {text: input};
+    console.log(task);
+    req.open('POST', url, true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.onreadystatechange = function (){
+      if (req.readyState === XMLHttpRequest.DONE){
+        getList();
+      }
     }
   }
   req.send(JSON.stringify(task));
+  document.querySelector('input').value = null;
 };
 addButton.addEventListener('click', addTodoItem);
+
+document.onkeydown = checkKey;
+function checkKey(e) {
+  e = e || window.event;
+  if (e.keyCode == '13') {
+    addTodoItem();
+  }
+};
 
 function checkItem(item, url, callback){
   var req = new XMLHttpRequest();
@@ -90,7 +103,7 @@ function drawList(TodoList, Listlength){
     newDiv.dataset.indexNumber = item.id;
 
     var newLabel = document.createElement('label');
-    newLabel.textContent =item.text.substring(0, 25);
+    newLabel.textContent =item.text//.substring(0, 25);
 
     var newIcons = document.createElement('div');
     newIcons.setAttribute('class', 'checking');

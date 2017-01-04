@@ -17,7 +17,7 @@ class CAB_game():
             self.state = "finished"
 
     def guess_result(self):
-        self.guessedNumber = str(input("Guess an integer from 1000-9999"))
+        self.guessedNumber = str(input("Guess an integer from 1000-9999: "))
         self.result = []
         for i in range(4):
             if self.guessedNumber[i] == self.secretNumber[i]:
@@ -40,5 +40,3 @@ class CAB_game():
 game = CAB_game()
 while game.state == "playing":
     print(game.play())
-#print(game.state_of_game())
-#print(game.count_guess())

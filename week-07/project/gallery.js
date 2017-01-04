@@ -67,7 +67,11 @@ function fillContent(){
 
     var newThumb = document.createElement('img');
     newThumb.setAttribute('src', collection[i]['src']);
-    newThumb.setAttribute('class', "thumb");
+    if (i === 0){
+      newThumb.setAttribute('class', 'thumb active');
+    } else {
+      newThumb.setAttribute('class', "thumb");
+    }
     newThumb.setAttribute('data-index-Number', i);
 
     if (i === 0){
@@ -101,27 +105,22 @@ var next = document.querySelector('.next');
 
 function before_z(){
   slides[current].classList.toggle('make_z_index');
-  //slides[current].classList.toggle('show');
-  thumbnailList[current+1].style.opacity = 0.4;
-  thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
+  thumbnailList[current].classList.toggle('active');
 }
 
 function after_z(){
-  thumbnailList[current+1].style.opacity = 1;
-  thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
+  thumbnailList[current].classList.toggle('active');
 }
 
 function callNext(){
   if (current === slides.length-1){
     before_z();
     slides[0].classList.toggle('make_z_index');
-    //slides[0].classList.toggle('show');
     current = 0;
     after_z();
   } else {
   before_z();
   slides[current+1].classList.toggle('make_z_index');
-  //slides[current+1].classList.toggle('show');
   current++;
   after_z();
   }
@@ -135,13 +134,11 @@ function callPrevious(){
   if (current === 0){
     before_z();
     slides[slides.length-1].classList.toggle('make_z_index');
-    //slides[slides.length-1].classList.toggle('show');
     current = slides.length-1;
     after_z();
   } else {
   before_z();
   slides[current-1].classList.toggle('make_z_index');
-  //slides[current-1].classList.toggle('show');
   current--;
   after_z();
   }
@@ -152,38 +149,32 @@ setTimeout(previous, 3000);
 var thumbnailList = document.querySelectorAll('.thumb');
 thumbnailList.forEach(function(item,index){
   thumbnailList[index].addEventListener('click', function(e) {
-    thumbnailList[current+1].style.opacity = 0.4;
-    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,0)";
-  	this.style.opacity = 1;
+    thumbnailList[current].classList.toggle('active')
     slides[current].classList.toggle('make_z_index');
-    //slides[current].classList.toggle('show');
     current = parseInt(this.dataset.indexNumber);
     slides[current].classList.toggle('make_z_index');
-    //slides[current].classList.toggle('show');
-    thumbnailList[current+1].style.boxShadow = "1px 2px 2px 0px rgba(181,125,125,1)";
+    thumbnailList[current].classList.toggle('active')
   });
 });
-
-
 
 var menu = document.querySelectorAll('.thumb')
 console.log(menu);
 var thefirstChild = menu[0];
 console.log(thefirstChild);
 
-
 document.onkeydown = checkKey;
 function checkKey(e) {
   e = e || window.event;
-  if (e.keyCode == '38') {
-      // up arrow
-    callPrevious();
-  }
-  else if (e.keyCode == '40') {
-      // down arrow
-    callNext();
-  }
-  else if (e.keyCode == '37') {
+  // if (e.keyCode == '38') {
+  //     // up arrow
+  //   callPrevious();
+  // }
+  // else if (e.keyCode == '40') {
+  //     // down arrow
+  //   callNext();
+  // }
+  // else
+  if (e.keyCode == '37') {
      // left arrow
     callPrevious();
   }
@@ -195,20 +186,21 @@ function checkKey(e) {
 
 console.log()
 
-//var nextSlider = document.querySelector('.thumb.next');
+var slider = document.querySelector('.slider');
+var nextSlider = document.querySelector('.next_thumb');
+var prevSlider = document.querySelector('.previous_thumb');
+var pos = 0;
 
-/*function OnMouseIn(nextSlider){
-  footer.style.position = 'relative';
-  footer.style.left = '-100px';
-}*/
-//OnMouseIn();
-/*var newThumbArrowPrev = document.createElement('img');
-newThumbArrowPrev.setAttribute('src', 'arrow.svg');
-newThumbArrowPrev.setAttribute('class', 'thumb previous');
-console.log(newThumbArrowPrev);
-menu.appendChild(newThumbArrowPrev);
+function nextPos(){
+  pos -= 42;
+  slider.style.left = pos + 'px';
+}
 
-var newThumbArrowNext = document.createElement('img');
-newThumbArrowNext.setAttribute('src', 'arrow.svg');
-newThumbArrowNext.setAttribute('class', 'thumb next');
-menu.appendChild(newThumbArrowNext);*/
+nextSlider.addEventListener('click', nextPos);
+
+function prevPos(){
+  pos += 42;
+  slider.style.left = pos + 'px';
+}
+
+prevSlider.addEventListener('click', prevPos);

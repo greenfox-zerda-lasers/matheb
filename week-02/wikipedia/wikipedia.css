@@ -10,7 +10,7 @@ body{
   padding: 0px;
   font-family: sans-serif;
   /*background-color: linear-gradient(to bottom white, rgb(220, 220, 220));*/
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgb(200, 200, 200), 45% rgb(190, 190, 190); 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 12%);
   width: 100%;
   height: 100%;
 }
@@ -33,6 +33,8 @@ p{
   line-height: 1.5em;
   padding-right: 15px;
   margin-right: 15px;
+  padding-top: 5px;
+  margin-top: 5px;
 }
 
 a:hover{
@@ -70,6 +72,7 @@ aside h2{
   color: grey;
   font-size: 12px;
   border-top: 1px solid black;
+  /*border-top: 1px solid radial-gradient(ellipse at center, rgba(128,128,128,1) 0%, rgba(255,255,255,1) 100%);*/
   padding-top: 10px;
 }
 
@@ -173,22 +176,51 @@ header a{
   justify-content: flex-end;
 }
 
-.tab, .tab > li{
+.login{
+  justify-content: flex-end;
+}
+
+.tab > li{
   border-left: 1px solid skyblue;
   border-right: 1px solid skyblue;
   border-bottom: 1px solid skyblue;
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(227,254,255,1) 100%);
-  padding-bottom: 0px;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(227,254,255,0.4) 100%);
+  padding-left: 5px;
+  padding-right: 5px;
   height: 30px;
 }
 
 .tab a{
   padding-top: 8px;
+  height: 30px;
 }
 
 .tab > li{
   margin: 0px;
 }
+
+.tab > li:hover{
+  background: rgba(255,255,255,1);
+  border-bottom: 2px solid white;
+  outline: 2px solid white;
+}
+
+.tab div {
+  display: inline-block;
+  height: 30px;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/*.tab li:hover{
+  position: relative;
+  top: -2px;
+  border-bottom: 10px solid white;
+  margin-top: 3px;
+  background: none;
+}*/
 
 /*.tab:hover, .tab > li:hover{
   background-color: rgba(255, 0, 0, 0.5);
@@ -203,14 +235,44 @@ header a{
   box-shadow: 1px 1px 3px 0px rgba(255, 255, 255, 0.5);
   border-radius: 2px;
   border: 1px solid grey;
-  height: 20px;
-  background: none;
+  height: 26px;
   vertical-align: middle;
   padding-top: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
   margin-left: 5px;
+  width: 20vw;
 }
 
+.search_icon{
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 0px;
+  right: 0px;
+}
+
+form > a{
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 40px;
+  right: 14px;
+  border: none;
+}
+
+form > a:hover{
+  background-color: skyblue;
+  opacity: 0.5;
+}
+
+/*.searchfield:before{
+  content=url("img/icon.svg");
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 5px;
+  right: 5px;
+}*/
 
 /*********CONTENT*******/
 main{
@@ -228,11 +290,18 @@ main{
 main > h1{
   display: flex;
   padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-bottom: 1px solid grey;
-  font-family: "Linux Liberation";
+  font-family: "Georgia";
+  font-weight: normal;
   margin-right: 15px;
   padding-right: 15px;
   overflow: hidden;
+}
+
+main > h1:first-child{
+  font-size: 30px;
 }
 
 .index{
@@ -249,7 +318,7 @@ main > h1{
 /********PHOTOS**********/
 .photo{
   float: right;
-  padding: 20px;
+  padding: 10px;
   background-color: rgb(246, 246, 246);
   padding-top: 10px;
   border: 1px solid grey;
@@ -276,6 +345,7 @@ main > h1{
 }
 
 .photo-subtitle{
+  font-weight: normal;
   font-size: 14px;
   padding-top: 0px;
   margin: 0px;
@@ -291,6 +361,7 @@ main > h1{
 table{
   font-size: 12px;
   line-height: 1.5em;
+  margin-left: 0px;
 }
 
 .label{
@@ -325,6 +396,10 @@ td:last-child{
   padding: 0px;
 }
 
+ol:before{
+  content: "  ";
+}
+
 .article-contents li{
   padding-left: 5px;
 }
@@ -342,6 +417,7 @@ td:last-child{
   margin-right: 10px;
   margin-bottom: 15px;
   margin-left: 15px;
+  display: block;
 }
 
 .nasa_photo{

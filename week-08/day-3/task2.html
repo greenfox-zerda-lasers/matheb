@@ -1,0 +1,53 @@
+<!doctype html>
+
+<!-- https://github.com/Giphy/GiphyAPI
+
+Find the images in the API
+Display the list of the first 16 results's static thumbnail
+If the user clicks on the thumbnail, display the animated GIF -->
+
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>"Task2"</title>
+  </header>
+
+  <body>
+    <h1>AJAXing really good</h1>
+    <script>
+      //var body = document.querySelector('body');
+      var xhr = new XMLHttpRequest();
+      sourceList1 = [];
+      sourceList2 = [];
+      xhr.open('GET', 'http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', true);
+      xhr.send('null');
+      xhr.onreadystatechange = function(){
+        if (xhr.readyState === XMLHttpRequest.DONE){
+            newThumb();
+          }
+          console.log(sourceList1);
+        }
+
+        function newThumb(){
+          var giphy = JSON.parse(xhr.response);
+          for (var i = 0; i < 16; i++){
+            sourceList1[i] = giphy.data[i].images.original_still.url;
+            sourceList2[i] = giphy.data[i].images.original.url;
+            var thumb = document.createElement('img')
+            thumb.setAttribute('src', sourceList1[i]);
+            thumb.setAttribute('src', sourceList1[i]);
+            thumb.setAttribute('data-index-Number', i);
+            document.body.appendChild(thumb);
+        }
+
+        var thumbnailList = document.querySelectorAll('img')
+        thumbnailList.forEach(function(item,index){
+          thumbnailList[index].addEventListener('click', function(e) {
+            current = parseInt(this.dataset.indexNumber);
+            thumbnailList[current].setAttribute('src', sourceList2[current]);
+          })
+        });
+
+      }
+    </script>
+  </body>

@@ -1,0 +1,57 @@
+<!doctype html>
+<!--New York Times API
+
+http://developer.nytimes.com/
+
+Ask your local mentor for the API key or request your own. Use localhost as the website.
+
+Use the Article Search API
+Find articles about the moon landing by Apollo 11
+Display the following fields in a list
+Headline
+Snippet
+Publication date
+Create a permalink to that article -->
+
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>"Task3"</title>
+  </header>
+
+  <body>
+    <ol></ol>
+    <script>
+    var list = document.querySelector('ol');
+    var request = new XMLHttpRequest();
+    request.open('GET', "https://api.nytimes.com/svc/search/v2/articlesearch.json?api_key=ecf5a7de7cc04cb2b96621ac0933ae26&q=apollo+11+moon+landing&begin_date=19690101&end_date=20161214", true);
+    request.send('null');
+    request.onreadystatechange = function(){
+      if (request.readyState === XMLHttpRequest.DONE){
+          var article = JSON.parse(request.response);
+          console.log(article);
+          addArticles(article);
+        }
+      }
+
+    function addArticles(article){
+      for (var i = 0; i < article.response.docs.length; i++){
+        var listElement = document.createElement('li');
+        var headline = document.createElement('h2');
+        var snippet = document.createElement('p');
+        var date = document.createElement('p');
+        var link = document.createElement('a');
+        headline.textContent = article.response.docs[i].headline.main;
+        snippet.textContent = article.response.docs[i].snippet;
+        date.textContent = article.response.docs[i].pub_date;
+        link.textContent = article.response.docs[i].web_url;
+        link.setAttribute('href', article.response.docs[i].web_url);
+        listElement.appendChild(headline);
+        listElement.appendChild(snippet);
+        listElement.appendChild(date);
+        listElement.appendChild(link);
+        list.appendChild(listElement);
+      }
+    }
+    </script>
+  </body>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <header>
+    <meta charset="utf-8">
+    <link href="task1.css" rel="stylesheet" type="text/css">
+    <title>"Task1"</title>
+  </header>
+
+  <body>
+    <script>
+    let httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', 'https://sheetsu.com/apis/v1.0/7654fbe24554', true); // Also try http://444.hu/feed //https://sheetsu.com/apis/v1.0/7654fbe24554
+    httpRequest.send(null);
+    httpRequest.onreadystatechange = console.log;
+    </script>
+  </body>

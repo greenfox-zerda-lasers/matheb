@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <header>
+    <meta charset="utf-8">
+    <link href="player.css" rel="stylesheet" type="text/css">
+    <link href="slider.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+    <link rel="stylesheet" href="vex/vex.css" />
+    <link rel="stylesheet" href="vex/vex-theme-os.css" />
+  </header>
+
+  <body>
+    <div class="whole_window">
+
+      <div class="left">
+        <div class="artwork"><img src="img/music-placeholder.png" /></div>
+
+        <div class="logo">
+          <img src="img/foxplayer.png" />
+        </div>
+
+        <div class="playlists">
+          <img src="buttons/add.png" class="add_icon" />
+          <h2>Playlists</h2>
+          <div class="playlist_elements">
+            <!-- <div class="playlist_item">All tracks</div> -->
+          </div>
+        </div>
+
+        <div class="addNewPlaylist">
+          <h2>Here you can create the new playlist</h2>
+          <img class="quit1" src="buttons/quit_icon.png" />
+          <input type="text" class="options"></input>
+          <div class="add button">Add</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="currently_playing">
+          <div class="top_title">
+            <h2 class="current_title">Title</h2>
+            <p class="musician">Musician</p>
+          </div>
+          <div class="icons">
+            <img src="buttons/add.png" class="add_icon" />
+            <img src="buttons/star.svg" class="star_icon" />
+          </div>
+        </div>
+
+        <div class="tracks"></div>
+
+        <div class="addToPlaylist">
+          <h2>Which playlist would you like to add the current Track to?</h2>
+          <img class="quit2" src="buttons/quit_icon.png" />
+          <div class="options"></div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <audio preload="auto" ></audio>
+    <script src="player.js"></script>
+
+    <div id="controls">
+      <img type="button" id="rewind" src="buttons/rewind.svg" />
+      <img type="button" id="play-pause" src="buttons/pause.svg" />
+      <img type="button" id="forward" src="buttons/forward.svg"/>
+      <div class="whole_slider">
+        <output class="time"></output>
+        <input type="range" id="track-bar" min="0" max="100" step="1" data-rangeSlider>
+        <div class="track-length">3:15</div>
+      </div>
+      <img type="button" id="shuffle" src="buttons/shuffle.svg" />
+      <img type="button" id="volume" src="buttons/volume.svg"/>
+      <div class="whole_volume_slider">
+        <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+        <output></output>
+      </div>
+    </div>
+
+    <script src="rangeSlider.js"></script>
+    <script src="slider.js"></script>
+    <!-- <script src="player.js"></script> -->
+    <script src="initial_slider.js"></script>
+
+    <script src="vex/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+
+
+  </script>
+  </body>

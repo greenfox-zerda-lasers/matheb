@@ -9,5 +9,5 @@ for i in range(len(numbers)):
   else:
     odd = odd + 1
 
-return "Number of even numbers: " + even + "."
-return "Number of odd numbers: " + odd + "."
+    return "Number of even numbers: " + even + "."
+    return "Number of odd numbers: " + odd + "."

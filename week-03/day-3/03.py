@@ -21,5 +21,5 @@ class Pirate():
 
 pirate = Pirate()
 
-pirate.drink_rum(5)
+pirate.drink_rum(2)
 pirate.hows_goin_mate()

@@ -46,6 +46,6 @@ def hive(n, x0, y0, a): #it needs
                 creating_hexagon(x, y, a)
                 canvas.update()
 
-hive(13, 100, 150, 20)
+hive(15, 100, 150, 20)
 
 root.mainloop()

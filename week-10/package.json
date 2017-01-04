@@ -1,0 +1,19 @@
+{
+  "name": "audio",
+  "version": "1.0.0",
+  "main": "initial_slider.js",
+  "dependencies": {
+    "browserify": "^13.1.1",
+    "rangeslider-js": "^2.1.1",
+    "rangeslider-pure": "^0.3.11",
+    "vex": "0.0.4",
+    "vex-js": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
