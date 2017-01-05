@@ -14,7 +14,7 @@ var playlist_divs = document.querySelectorAll(".playlist_item");
 var playlist_elements = document.querySelector(".playlist_elements");
 var currentPlaylist = 0;
 var currentTrack = 0;
-
+var playlistData = [] // tracks loaded from server via AJAX
 var next = document.querySelector('.forward');
 
 function callNext(Tracklist, Listlength, tracks){
@@ -110,7 +110,12 @@ function loadPlaylists(Playlists, Listlength){
       newPlaylist.appendChild(db);
     }
     newTrackButton.setAttribute('class', 'button');
+    newTrackButton.setAttribute('data-index-Number', Playlists[i]['id']);
+    newTrackButton.setAttribute('data-column', i);
     newTrackButton.textContent = Playlists[i]['playlist'];
+    newTrackButton.addEventListener('click', function(){
+      postTrack(this);
+    });
     if (i === 0 ){
       newPlaylist.setAttribute('class', 'playlist_item active darker');
     } else if (i%2 === 0) {
@@ -263,19 +268,38 @@ function getTracklist(item){
   xhr.onreadystatechange = function (){
     if (xhr.readyState === XMLHttpRequest.DONE){
       var Tracklist = JSON.parse(xhr.response);
+      playlistData = Tracklist;
       var Listlength = Tracklist.length;
+      console.log(Tracklist)
       loadTracks(Tracklist, Listlength);
     }
   }
 };
 
+function findPath(playlistData, item) {
+  for (var i = 0; i < playlistData.length; i++){
+    console.log(item.column);
+    if ( item.column === playlistData[currentTrack]){
+      return playlistData[currentTrack].path;
+    }
+  }
+}
+
 function postTrack(item){
   // console.log(item.dataset.indexNumber)
   item.playlist_id = item.dataset.indexNumber;
+  //console.log(item)
+  console.log(playlistData)
+  console.log(item)
+  console.log(currentTrack)
+  var path = playlistData[currentTrack]['path'];
+  console.log(path)
+  var title = playlistData[currentTrack]['title']
+  var artist = playlistData[currentTrack]['artist']
   var xhr = new XMLHttpRequest();
   xhr.open('POST', "http://localhost:3000/playlist-tracks/"+item.playlist_id, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send();
+  xhr.send(JSON.stringify({path: path, title: title, artist: artist}));
   xhr.onreadystatechange = function (){
     if (xhr.readyState === XMLHttpRequest.DONE){
       var Tracklist = JSON.parse(xhr.response);

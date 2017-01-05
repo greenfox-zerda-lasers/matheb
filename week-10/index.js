@@ -88,7 +88,9 @@ musicPlayer.get('/playlist-tracks/:playlist_id', function get(req, resp) {
 });
 
 musicPlayer.post('/playlist-tracks/:playlist_id', function add(req, resp) {
-  con.query('INSERT INTO tracks SET ?', [{playlist_id: req.params.playlist_id}], function(err,res){
+  con.query('INSERT INTO tracks (path, playlist_id, title, artist) VALUES (?,?,?,?)',
+  [req.body.path, req.params.playlist_id, req.body.title, req.body.artist],
+  function(err,res){
     if(err) throw err;
     con.query('SELECT * FROM tracks', function(req, rows){
       if(err) throw err;
