@@ -13,9 +13,31 @@ console.log(tracks)
 var playlist_divs = document.querySelectorAll(".playlist_item");
 var playlist_elements = document.querySelector(".playlist_elements");
 var currentPlaylist = 0;
+var currentTrack = 0;
+
+var next = document.querySelector('.forward');
+
+function callNext(Tracklist, Listlength, tracks){
+  if (currentTrack === Listlength-1){
+    tracks[currentTrack].classList.toggle('active')
+    currentTrack = 0;
+    tracks[currentTrack].classList.toggle('active')
+    audio.setAttribute('src', Tracklist[this.dataset.indexNumber]['path']);
+    title.textContent = Tracklist[this.dataset.indexNumber]['title'];
+    musician.textContent = Tracklist[this.dataset.indexNumber]['artist'];
+  } else {
+    tracks[currentTrack].classList.toggle('active')
+    currentTrack++;
+    tracks[currentTrack].classList.toggle('active')
+    audio.setAttribute('src', Tracklist[this.dataset.indexNumber]['path']);
+    title.textContent = Tracklist[this.dataset.indexNumber]['title'];
+    musician.textContent = Tracklist[this.dataset.indexNumber]['artist'];
+  }
+  audio.play();
+};
+//next.addEventListener('click', callNext)
 
 function loadTracks(Tracklist, Listlength){
-  var currentTrack = 0;
   trackList.innerHTML = '';
   for (var i = 0; i < Listlength; i++){
     var newTrack = document.createElement('div');
@@ -38,10 +60,16 @@ function loadTracks(Tracklist, Listlength){
       audio.setAttribute('src', Tracklist[this.dataset.indexNumber]['path']);
       title.textContent = Tracklist[this.dataset.indexNumber]['title'];
       musician.textContent = Tracklist[this.dataset.indexNumber]['artist'];
+      audio.play();
     })
+    // var next = document.querySelector('.forward');
+    // next.addEventListener('click', callNext);
   }
 }
 //loadTracks();
+
+
+
 
 
 var DelButton = ( function () {
@@ -67,11 +95,13 @@ var DelButton = ( function () {
 function loadPlaylists(Playlists, Listlength){
   //console.log(playList)
   playLists.innerHTML = '';
+  var playlist_divs = [];
   for (var i = 0; i < Listlength; i++){
     var newPlaylist = document.createElement('div');
     var newPlaylistName = document.createElement('div');
     var newTrackButton = document.createElement('div');
     newPlaylist.setAttribute('data-index-Number', Playlists[i]['id']);
+    newPlaylist.setAttribute('data-column', i);
     newPlaylist.textContent = Playlists[i]['playlist'];
     newPlaylist.addEventListener('click', getTracklist);
     if (i > 1){
@@ -96,6 +126,15 @@ function loadPlaylists(Playlists, Listlength){
     // })
     playLists.appendChild(newPlaylist);
     dialog.appendChild(newTrackButton);
+    playlist_divs.push(newPlaylist);
+
+    newPlaylist.addEventListener('click', function () {
+      console.log(currentPlaylist)
+      playlist_divs[currentPlaylist].classList.toggle('active')
+      currentPlaylist = parseInt(this.dataset.column);
+      playlist_divs[currentPlaylist].classList.toggle('active')
+      getTracklist(this)
+    })
   }
   // audio.setAttribute('src', musicList[0]['src']);
 }
@@ -134,6 +173,7 @@ var addPlaylist = document.querySelectorAll(".add_icon")[0];
 var quitButton1 = document.querySelector(".quit1");
 var quitButton2 = document.querySelector(".quit2");
 console.log(addTrack);
+
 addTrack.addEventListener('click', function(){
   dialog.style.visibility = "visible";
 })
@@ -213,9 +253,27 @@ function removePlaylist(item, callback){
   }
 };
 
-function getTracklist(){
+function getTracklist(item){
+  // console.log(item.dataset.indexNumber)
+  item.playlist_id = item.dataset.indexNumber;
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', "http://localhost:3000/playlist-tracks", true);
+  xhr.open('GET', "http://localhost:3000/playlist-tracks/"+item.playlist_id, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send();
+  xhr.onreadystatechange = function (){
+    if (xhr.readyState === XMLHttpRequest.DONE){
+      var Tracklist = JSON.parse(xhr.response);
+      var Listlength = Tracklist.length;
+      loadTracks(Tracklist, Listlength);
+    }
+  }
+};
+
+function postTrack(item){
+  // console.log(item.dataset.indexNumber)
+  item.playlist_id = item.dataset.indexNumber;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', "http://localhost:3000/playlist-tracks/"+item.playlist_id, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send();
   xhr.onreadystatechange = function (){
