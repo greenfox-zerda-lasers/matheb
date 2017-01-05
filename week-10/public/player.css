@@ -111,12 +111,6 @@ h2 {
   font-weight: normal;
 }
 
-.track:hover {
-  background-color: #d0c1dd;
-  outline: 1px solid #695877;
-  cursor: pointer;
-}
-
 .track:active {
   background-color: lightgrey;
 }
@@ -127,14 +121,12 @@ h2 {
   height: 24px;
 }
 
-.playlist_item:hover {
-  outline: 1px solid #695877;
-  background-color: #d0c1dd;
+.playlist_item:hover, .track:hover {
+background-color: #d0c1dd;
 }
 
 .playlist_item.active, .track.active {
   background-color: #d0c1dd;
-  outline: 1px solid #695877;
 }
 
 .addToPlaylist, .addNewPlaylist {

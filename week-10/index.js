@@ -67,6 +67,36 @@ musicPlayer.delete('/playlists/:id', function del(req, resp) {
   });
 });
 
+musicPlayer.get('/playlist-tracks', function get(req, resp) {
+  con.query('SELECT * FROM tracks;',function(err,rows){
+    if(err) {
+      console.log(err.toString());
+      return;
+    }
+    resp.send(rows);
+  });
+});
+
+musicPlayer.get('/playlist-tracks/:playlist_id', function get(req, resp) {
+  con.query('SELECT * FROM tracks WHERE playlist_id = ?', [req.params.playlist_id],function(err,rows){
+    if(err) {
+      console.log(err.toString());
+      return;
+    }
+    resp.send(rows);
+  });
+});
+
+musicPlayer.post('/playlist-tracks/:playlist_id', function add(req, resp) {
+  con.query('INSERT INTO tracks SET ?', [{playlist_id: req.params.playlist_id}], function(err,res){
+    if(err) throw err;
+    con.query('SELECT * FROM tracks', function(req, rows){
+      if(err) throw err;
+      resp.send(rows);
+    });
+  });
+});
+
 musicPlayer.listen(3000, function(){
 	console.log('SERVER IS UP AND RUNNIN on port: 3000')
 });

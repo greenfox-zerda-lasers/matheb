@@ -1,51 +1,26 @@
-var musicList = [
-  {
-    title: "Never give up",
-    src: "ars.mp3",
-    musician: "Ars Sonor"
-  },
-  {
-    title: "Purple drift",
-    src: "purple.mp3",
-    musician: "Organoid"
-  },
-  {
-    title: "Doctor Talos answers the door",
-    src: "doctor.mp3",
-    musician: "Doctor Turtle"
-  },
-];
-
-var playList = [
-  {
-    name: "All track",
-    songs: [0, 1, 2]
-  },
-  {
-    name: "Favorites",
-    songs: []
-  },
-  {
-    name: "Holiday",
-    songs: []
-  },
-  {
-    name: "Weekend",
-    songs: []
-  },
-];
-
 var playLists = document.querySelector(".playlist_elements")
-
 var trackList = document.querySelector(".tracks")
 var audio = document.querySelector("audio");
-console.log(trackList);
 
-function loadTracks(){
-  for (var i = 0; i < musicList.length; i++){
+var title = document.querySelector(".current_title");
+var musician = document.querySelector(".musician");
+
+var dialog = document.querySelector(".addToPlaylist");
+var dialogInput = document.querySelector(".addNewPlaylist");
+
+var tracks = document.querySelectorAll(".track");
+console.log(tracks)
+var playlist_divs = document.querySelectorAll(".playlist_item");
+var playlist_elements = document.querySelector(".playlist_elements");
+var currentPlaylist = 0;
+
+function loadTracks(Tracklist, Listlength){
+  var currentTrack = 0;
+  trackList.innerHTML = '';
+  for (var i = 0; i < Listlength; i++){
     var newTrack = document.createElement('div');
     newTrack.setAttribute('data-index-Number', i);
-    newTrack.textContent = musicList[i]['title'];
+    newTrack.textContent = Tracklist[i]['title'];
     if (i === 0 ){
       newTrack.setAttribute('class', 'track active darker');
     } else if (i%2 === 0) {
@@ -54,19 +29,20 @@ function loadTracks(){
       newTrack.setAttribute('class', 'track transparent');
     }
     trackList.appendChild(newTrack);
+    var tracks = document.querySelectorAll(".track");
+    newTrack.addEventListener('click', function () {
+      console.log(currentTrack)
+      tracks[currentTrack].classList.toggle('active')
+      currentTrack = parseInt(this.dataset.indexNumber);
+      tracks[currentTrack].classList.toggle('active')
+      audio.setAttribute('src', Tracklist[this.dataset.indexNumber]['path']);
+      title.textContent = Tracklist[this.dataset.indexNumber]['title'];
+      musician.textContent = Tracklist[this.dataset.indexNumber]['artist'];
+    })
   }
-  audio.setAttribute('src', musicList[0]['src']);
 }
-loadTracks();
+//loadTracks();
 
-var dialog = document.querySelector(".addToPlaylist");
-var dialogInput = document.querySelector(".addNewPlaylist");
-
-var tracks = document.querySelectorAll(".track");
-var playlist_divs = document.querySelectorAll(".playlist_item");
-var playlist_elements = document.querySelector(".playlist_elements");
-var currentTrack = 0;
-var currentPlaylist = 0;
 
 var DelButton = ( function () {
 
@@ -89,7 +65,7 @@ var DelButton = ( function () {
 
 
 function loadPlaylists(Playlists, Listlength){
-  console.log(playList)
+  //console.log(playList)
   playLists.innerHTML = '';
   for (var i = 0; i < Listlength; i++){
     var newPlaylist = document.createElement('div');
@@ -97,6 +73,7 @@ function loadPlaylists(Playlists, Listlength){
     var newTrackButton = document.createElement('div');
     newPlaylist.setAttribute('data-index-Number', Playlists[i]['id']);
     newPlaylist.textContent = Playlists[i]['playlist'];
+    newPlaylist.addEventListener('click', getTracklist);
     if (i > 1){
       var db = DelButton.button();
       db.setAttribute('data-index-Number', Playlists[i]['id']);
@@ -123,11 +100,6 @@ function loadPlaylists(Playlists, Listlength){
   // audio.setAttribute('src', musicList[0]['src']);
 }
 //loadPlaylists();
-
-var title = document.querySelector(".current_title");
-var musician = document.querySelector(".musician");
-title.textContent = musicList[currentTrack]['title'];
-musician.textContent = musicList[currentTrack]['musician'];
 
 console.log(tracks);
 tracks.forEach(function(item,index){
@@ -237,6 +209,20 @@ function removePlaylist(item, callback){
       var Playlists = JSON.parse(req.response);
       var Listlength = Playlists.length;
       callback(Playlists, Listlength);
+    }
+  }
+};
+
+function getTracklist(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', "http://localhost:3000/playlist-tracks", true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send();
+  xhr.onreadystatechange = function (){
+    if (xhr.readyState === XMLHttpRequest.DONE){
+      var Tracklist = JSON.parse(xhr.response);
+      var Listlength = Tracklist.length;
+      loadTracks(Tracklist, Listlength);
     }
   }
 };
