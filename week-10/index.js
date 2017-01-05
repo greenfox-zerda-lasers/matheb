@@ -33,7 +33,17 @@ musicPlayer.get('/playlists', function get(req, resp) {
     }
     resp.send(rows);
   });
-  //resp.send(todos);
+});
+
+musicPlayer.get('/playlists/:id', function getid(req, resp) {
+  var num = req.params.id;
+  con.query('SELECT * FROM playlist WHERE id = ?;', [num], function(err,rows){
+    if(err) {
+      console.log(err.toString());
+      return;
+    }
+    resp.send(rows);
+  });
 });
 
 musicPlayer.post('/playlists', function add(req, resp) {
@@ -46,7 +56,8 @@ musicPlayer.post('/playlists', function add(req, resp) {
   });
 });
 
-musicPlayer.delete('/playlist/:id', function del(req, resp) {
+musicPlayer.delete('/playlists/:id', function del(req, resp) {
+  console.log(req.params.id)
   con.query('DELETE FROM playlist WHERE id = ?', [req.params.id], function (err, result) {
     if (err) throw err;
     con.query('SELECT * FROM playlist', function(req, rows){

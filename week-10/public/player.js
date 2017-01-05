@@ -46,17 +46,12 @@ function loadTracks(){
     var newTrack = document.createElement('div');
     newTrack.setAttribute('data-index-Number', i);
     newTrack.textContent = musicList[i]['title'];
-    if (i === 0){
-      newTrack.setAttribute('id', 'track');
-      newTrack.setAttribute('class', 'track active');
+    if (i === 0 ){
+      newTrack.setAttribute('class', 'track active darker');
+    } else if (i%2 === 0) {
+      newTrack.setAttribute('class', 'track  darker')
     } else {
-      newTrack.setAttribute('class', 'track');
-      newTrack.setAttribute('id', 'track');
-    }
-    if (i%2 === 0){
-      newTrack.style.backgroundColor = "lightgrey";
-    } else {
-      newTrack.style.background = "transparent";
+      newTrack.setAttribute('class', 'track transparent');
     }
     trackList.appendChild(newTrack);
   }
@@ -73,19 +68,39 @@ var playlist_elements = document.querySelector(".playlist_elements");
 var currentTrack = 0;
 var currentPlaylist = 0;
 
+var DelButton = ( function () {
+
+  function createDel() {
+
+    var newDelButton = document.createElement('img');
+    newDelButton.setAttribute('src', "buttons/quit_icon.png");
+    newDelButton.setAttribute('class', "del");
+    newDelButton.addEventListener('click', function() {
+      removePlaylist(this.dataset.indexNumber, loadPlaylists);
+    });
+    return newDelButton
+  }
+
+  return {
+    button: createDel
+  };
+
+})();
+
+
 function loadPlaylists(Playlists, Listlength){
-  playList.innerHTML = '';
+  console.log(playList)
+  playLists.innerHTML = '';
   for (var i = 0; i < Listlength; i++){
     var newPlaylist = document.createElement('div');
     var newPlaylistName = document.createElement('div');
     var newTrackButton = document.createElement('div');
-    newPlaylist.setAttribute('data-index-Number', i);
+    newPlaylist.setAttribute('data-index-Number', Playlists[i]['id']);
     newPlaylist.textContent = Playlists[i]['playlist'];
     if (i > 1){
-      var newDelButton = document.createElement('img')
-      newDelButton.setAttribute('src', "buttons/quit_icon.png");
-      newDelButton.setAttribute('class', "del");
-      newPlaylist.appendChild(newDelButton)
+      var db = DelButton.button();
+      db.setAttribute('data-index-Number', Playlists[i]['id']);
+      newPlaylist.appendChild(db);
     }
     newTrackButton.setAttribute('class', 'button');
     newTrackButton.textContent = Playlists[i]['playlist'];
@@ -96,11 +111,12 @@ function loadPlaylists(Playlists, Listlength){
     } else {
       newPlaylist.setAttribute('class', 'playlist_item transparent');
     }
+    //changePlaylistOption();
     // newPlaylist.addEventListener('click', function(e) {
     //   Playlists[currentPlaylist].classList.toggle('active')
     //   currentTrack = parseInt(this.dataset.indexNumber);
     //   Playlists[currentPlaylist].classList.toggle('active')
-    // }
+    // })
     playLists.appendChild(newPlaylist);
     dialog.appendChild(newTrackButton);
   }
@@ -133,6 +149,14 @@ playlist_divs.forEach(function(item,index){
   });
 });
 
+function changePlaylistOption (newPlaylist) {
+  newPlaylist.addEventListener('click', function(e) {
+    playlist_divs[currentPlaylist].classList.toggle('active')
+    currentPlaylist = parseInt(this.dataset.indexNumber);
+    playlist_divs[currentPlaylist].classList.toggle('active')
+  });
+}
+
 var addTrack = document.querySelectorAll(".add_icon")[1];
 var addPlaylist = document.querySelectorAll(".add_icon")[0];
 var quitButton1 = document.querySelector(".quit1");
@@ -159,25 +183,6 @@ addFavorite.addEventListener('click', function(){
   alert('Do you want to add the Track to Favourites?');
 })
 
-function createPlaylistDiv (input, Listlength) {
-  var newPlaylist = document.createElement('div');
-  newPlaylist.setAttribute('data-index-Number', Listlength);
-  newPlaylist.setAttribute('class', 'playlist_item');
-  newPlaylist.textContent = input;
-  if (playList.length%2 === 0){
-    newPlaylist.style.backgroundColor = "lightgrey";
-  } else {
-    newPlaylist.style.background = "transparent";
-  }
-}
-
-function createDelDiv() {
-  var newDelButton = document.createElement('img')
-  newDelButton.setAttribute('src', "buttons/quit_icon.png");
-  newDelButton.setAttribute('class', "del");
-  newPlaylist.appendChild(newDelButton)
-  playlist_elements.appendChild(newPlaylist);
-}
 
 // AJAX CALLLSS TRY
 
@@ -198,7 +203,10 @@ getPlayList();
 
 console.log(playlist_divs)
 var addButton = document.querySelector(".add");
-addButton.addEventListener('click', function(){
+
+
+function addNewPlaylist(){
+  console.log(addButton)
   var req = new XMLHttpRequest();
   var input = document.querySelector("input.options").value;
   if (input != ''){
@@ -209,42 +217,26 @@ addButton.addEventListener('click', function(){
       if (req.readyState === XMLHttpRequest.DONE){
         var Playlists = JSON.parse(req.response);
         var Listlength = Playlists.length;
-        for (var i = 0; i < Listlength; i++){
-          var newPlaylist = document.createElement('div');
-          newPlaylist.setAttribute('data-index-Number', Listlength);
-          newPlaylist.setAttribute('class', 'playlist_item');
-          newPlaylist.textContent = Playlists[i]['playlist'];
-          if (i%2 === 0){
-            newPlaylist.setAttribute('class', 'darker');
-          } else {
-            newPlaylist.setAttribute('class', 'transparent');
-          }
-          var newDelButton = document.createElement('img')
-          newDelButton.setAttribute('src', "buttons/quit_icon.png");
-          newDelButton.setAttribute('class', "del");
-          newDelButton.addEventListener('click', removePlaylist(item, loadPlayList));
-        }
-        newPlaylist.appendChild(newDelButton)
-        playlist_elements.appendChild(newPlaylist);
+        loadPlaylists(Playlists, Listlength);
         dialogInput.style.visibility = "hidden";
       }
     }
   }
   req.send(JSON.stringify({name: name}));
-})
+}
+addButton.addEventListener('click', addNewPlaylist);
 
 function removePlaylist(item, callback){
   var req = new XMLHttpRequest();
-  req.open('DELETE', "http://localhost:3000/playlists" +item.id, true);
+  req.open('DELETE', "http://localhost:3000/playlists/" +item, true);
   req.setRequestHeader("Accept", "application/json; charset=utf-8");
+  req.send();
   req.onreadystatechange = function (){
     if (req.readyState === XMLHttpRequest.DONE){
       console.log(req.response);
-      var Playlists = JSON.parse(xhr.response);
+      var Playlists = JSON.parse(req.response);
       var Listlength = Playlists.length;
-      //loadPlaylists(Playlists, Listlength);
-      callback();
+      callback(Playlists, Listlength);
     }
   }
-  req.send();
 };
