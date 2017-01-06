@@ -10,6 +10,7 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(307deg, rgba(97,97,97,1) 0%, rgba(65,48,97,1) 35%, rgba(93,90,97,1) 49%, rgba(97,97,97,1) 51%, rgba(0,128,128,1) 100%);
 }
 
 audio {

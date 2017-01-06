@@ -168,17 +168,17 @@ nextButton.addEventListener('click', function(){
     audio.setAttribute('src', musicList[currentTrack]['src']);
     audio.play();
     playButton.setAttribute('src', 'buttons/pause.svg');
-    title.textContent = musicList[currentTrack]['title'];
-    musician.textContent = musicList[currentTrack]['musician'];
+    title.textContent = tracks[currentTrack]['title'];
+    musician.textContent = tracks[currentTrack]['musician'];
   } else {
     tracks[currentTrack].classList.toggle('active')
     currentTrack = 0;
     tracks[currentTrack].classList.toggle('active')
-    audio.setAttribute('src', musicList[currentTrack]['src']);
+    audio.setAttribute('src', tracks[currentTrack]['src']);
     audio.play();
     playButton.setAttribute('src', 'buttons/pause.svg');
-    title.textContent = musicList[currentTrack]['title'];
-    musician.textContent = musicList[currentTrack]['musician'];
+    title.textContent = tracks[currentTrack]['title'];
+    musician.textContent = tracks[currentTrack]['musician'];
   }
 })
 

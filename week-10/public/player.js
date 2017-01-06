@@ -14,32 +14,25 @@ var playlist_divs = document.querySelectorAll(".playlist_item");
 var playlist_elements = document.querySelector(".playlist_elements");
 var currentPlaylist = 0;
 var currentTrack = 0;
-var playlistData = [] // tracks loaded from server via AJAX
-var next = document.querySelector('.forward');
 
-function callNext(Tracklist, Listlength, tracks){
-  if (currentTrack === Listlength-1){
-    tracks[currentTrack].classList.toggle('active')
-    currentTrack = 0;
-    tracks[currentTrack].classList.toggle('active')
-    audio.setAttribute('src', Tracklist[this.dataset.indexNumber]['path']);
-    title.textContent = Tracklist[this.dataset.indexNumber]['title'];
-    musician.textContent = Tracklist[this.dataset.indexNumber]['artist'];
-  } else {
-    tracks[currentTrack].classList.toggle('active')
-    currentTrack++;
-    tracks[currentTrack].classList.toggle('active')
-    audio.setAttribute('src', Tracklist[this.dataset.indexNumber]['path']);
-    title.textContent = Tracklist[this.dataset.indexNumber]['title'];
-    musician.textContent = Tracklist[this.dataset.indexNumber]['artist'];
-  }
-  audio.play();
-};
-//next.addEventListener('click', callNext)
+// tracks loaded from server via AJAX
+var playlistData = []
+var playlistDataLength = playlistData.length; // tracks loaded from server via AJAX
+var tracks = document.querySelectorAll(".track")
+
+//var audio = new Audio();
+var audio = document.querySelector('audio');
+
+var playButton = document.querySelector("#play-pause");
+var prevButton = document.querySelector("#rewind");
+var nextButton = document.querySelector("#forward");
+var track_length = document.querySelector(".track-length");
+var time = document.querySelector(".time");
 
 function loadTracks(Tracklist, Listlength){
   trackList.innerHTML = '';
   for (var i = 0; i < Listlength; i++){
+    audio.volume = 1;
     var newTrack = document.createElement('div');
     newTrack.setAttribute('data-index-Number', i);
     newTrack.textContent = Tracklist[i]['title'];
@@ -51,7 +44,7 @@ function loadTracks(Tracklist, Listlength){
       newTrack.setAttribute('class', 'track transparent');
     }
     trackList.appendChild(newTrack);
-    var tracks = document.querySelectorAll(".track");
+    tracks = document.querySelectorAll(".track");
     newTrack.addEventListener('click', function () {
       console.log(currentTrack)
       tracks[currentTrack].classList.toggle('active')
@@ -62,14 +55,17 @@ function loadTracks(Tracklist, Listlength){
       musician.textContent = Tracklist[this.dataset.indexNumber]['artist'];
       audio.play();
     })
-    // var next = document.querySelector('.forward');
-    // next.addEventListener('click', callNext);
+    console.log(tracks)
+    console.log(Tracklist)
   }
+  nextButton.addEventListener('click', function () {
+    callNext(Tracklist, Listlength, tracks);
+  })
+  prevButton.addEventListener('click', function () {
+    callPrev(Tracklist, Listlength, tracks);
+  })
 }
 //loadTracks();
-
-
-
 
 
 var DelButton = ( function () {
@@ -95,6 +91,7 @@ var DelButton = ( function () {
 function loadPlaylists(Playlists, Listlength){
   //console.log(playList)
   playLists.innerHTML = '';
+  tracks.innerHTML = '';
   var playlist_divs = [];
   for (var i = 0; i < Listlength; i++){
     var newPlaylist = document.createElement('div');
@@ -115,6 +112,8 @@ function loadPlaylists(Playlists, Listlength){
     newTrackButton.textContent = Playlists[i]['playlist'];
     newTrackButton.addEventListener('click', function(){
       postTrack(this);
+      getTracklist(playlist_divs[currentPlaylist]);
+      console.log(playlist_divs[currentPlaylist]);
     });
     if (i === 0 ){
       newPlaylist.setAttribute('class', 'playlist_item active darker');
@@ -286,14 +285,8 @@ function findPath(playlistData, item) {
 }
 
 function postTrack(item){
-  // console.log(item.dataset.indexNumber)
   item.playlist_id = item.dataset.indexNumber;
-  //console.log(item)
-  console.log(playlistData)
-  console.log(item)
-  console.log(currentTrack)
   var path = playlistData[currentTrack]['path'];
-  console.log(path)
   var title = playlistData[currentTrack]['title']
   var artist = playlistData[currentTrack]['artist']
   var xhr = new XMLHttpRequest();
@@ -307,4 +300,91 @@ function postTrack(item){
       loadTracks(Tracklist, Listlength);
     }
   }
+  dialog.style.visibility = "hidden";
 };
+
+console.log(audio.duration);
+
+audio.addEventListener('loadedmetadata',function(){
+  track_length.textContent = Math.floor(audio.duration/60)+":"+Math.floor(audio.duration%60);
+  console.log(audio.duration);
+});
+
+audio.addEventListener('ended', function(e)
+{
+  audio.pause();
+  console.log("ended event happened");
+}, false);
+
+playButton.addEventListener('click', function(e)
+{
+  //console.log(Tracklist)
+  if(audio.paused)
+  {
+    audio.play();
+    playButton.setAttribute('src', 'buttons/pause.svg');
+  }
+  else
+  {
+    audio.pause();
+    playButton.setAttribute('src', 'buttons/play.svg');
+  }
+
+}, false);
+
+
+function callNext(Tracklist, Listlength, tracks){
+  if (currentTrack === Listlength-1){
+    tracks[currentTrack].classList.toggle('active')
+    currentTrack = 0;
+    tracks[currentTrack].classList.toggle('active')
+    console.log(Tracklist[this.dataset.indexNumber])
+    audio.setAttribute('src', Tracklist[currentTrack]['path']);
+    title.textContent = Tracklist[currentTrack]['title'];
+    musician.textContent = Tracklist[currentTrack]['artist'];
+    track_length.textContent = audio.duration;
+  } else {
+    console.log(tracks)
+    tracks[currentTrack].classList.toggle('active')
+    currentTrack++;
+    tracks[currentTrack].classList.toggle('active')
+    audio.setAttribute('src', Tracklist[currentTrack]['path']);
+    title.textContent = Tracklist[currentTrack]['title'];
+    musician.textContent = Tracklist[currentTrack]['artist'];
+    track_length.textContent = audio.duration;
+  }
+  audio.play();
+};
+
+function callPrev(Tracklist, Listlength, tracks) {
+  if (currentTrack > 0){
+    tracks[currentTrack].classList.toggle('active')
+    currentTrack --;
+    tracks[currentTrack].classList.toggle('active')
+    audio.setAttribute('src', Tracklist[currentTrack]['src']);
+    audio.play();
+    playButton.setAttribute('src', 'buttons/pause.svg');
+    title.textContent = Tracklist[currentTrack]['title'];
+    musician.textContent = Tracklist[currentTrack]['musician'];
+  } else {
+    tracks[currentTrack].classList.toggle('active')
+    currentTrack = Listlength-1;
+    tracks[currentTrack].classList.toggle('active')
+    audio.setAttribute('src', Tracklist[currentTrack]['src']);
+    audio.play();
+    playButton.setAttribute('src', 'buttons/pause.svg');
+    title.textContent = Tracklist[currentTrack]['title'];
+    musician.textContent = Tracklist[currentTrack]['musician'];
+  }
+};
+
+audio.addEventListener("canplaythrough", function()
+{
+  audio.play();
+  console.log("canplaythrough event happened");
+}, true);
+
+audio.addEventListener("loadstart", function()
+{
+  console.log("loadstart event happened");
+}, true);
