@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="store">
+  <head>
+    
+  </head>
+
+  <body ng-controller="StoreController as store">
+
+    <p>{{"hello"+" you"}}</p> <!--expressions-->
+
+    <div class="product row"  ng-hide="store.products.soldOut">
+      <h1>{{store.products[0].name}}</h3>
+      <h2 class="pull-right">${{store.products[0].price}}</h2>
+      <p>{{store.products[0].description}}</p>
+      <button ng-show="store.products[0].canPurchase">Add to Cart</button>
+    </div>
+
+    <div ng-repeat="product in store.products">
+      <h1 class="pull-left">{{product.name}}</h3>
+      <h2 class="pull-right">{{product.price | currency}}</h2>
+      <p>{{product.description}}</p>
+      <button ng-show="product.canPurchase">Add to Cart</button>
+    </div>
+
+  </body>
+
+  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</html>
