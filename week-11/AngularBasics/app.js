@@ -8,18 +8,32 @@
 
   var gems = [
     {
-      name: 'D',
-      price: 2.95,
+      name: 'Cat',
       description: 'A very short description',
-      canPurchase: true,
+      lovelyness: true,
       soldOut: true,
+      img: 'cat.jpg'
     },
     {
-      name: 'B',
-      price: 4.50,
+      name: 'Dog',
       description: 'Similar to the first one',
-      canPurchase: true,
+      lovelyness: true,
       soldOut: true,
+      img: 'dog.jpg'
+    },
+    {
+      name: 'Travel',
+      description: 'Far far away...',
+      lovelyness: true,
+      soldOut: true,
+      img: 'travellers.jpg'
+    },
+    {
+      name: 'Flying',
+      description: 'Up in the air',
+      lovelyness: true,
+      soldOut: true,
+      img: 'flying.jpg'
     },
   ];
 

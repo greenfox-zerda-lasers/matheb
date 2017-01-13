@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html ng-app="store">
   <head>
-    
+    <link href="index.css" rel="stylesheet">
   </head>
 
   <body ng-controller="StoreController as store">
 
-    <p>{{"hello"+" you"}}</p> <!--expressions-->
+    <!-- <p>{{"hello"+" you"}}</p> <!-- expressions-->
 
     <div class="product row"  ng-hide="store.products.soldOut">
       <h1>{{store.products[0].name}}</h3>
-      <h2 class="pull-right">${{store.products[0].price}}</h2>
+      <img class="pull-right" ng-src="{{store.products[0].img}}"/>
       <p>{{store.products[0].description}}</p>
-      <button ng-show="store.products[0].canPurchase">Add to Cart</button>
+      <button ng-show="store.products[0].lovelyness">Lovely</button>
     </div>
 
     <div ng-repeat="product in store.products">
       <h1 class="pull-left">{{product.name}}</h3>
-      <h2 class="pull-right">{{product.price | currency}}</h2>
+      <img class="pull-right" ng-src="{{product.img}}"/>
       <p>{{product.description}}</p>
-      <button ng-show="product.canPurchase">Add to Cart</button>
+      <button ng-show="product.lovelyness">Lovely</button>
     </div>
 
   </body>

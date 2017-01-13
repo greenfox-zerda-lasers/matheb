@@ -1,0 +1,19 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: Arial;
+}
+
+body {
+  display: flex;
+  flex-flow: row;
+}
+
+div {
+  margin: 30px;
+  width: 30%;
+}
+
+img {
+  width: 100%;
+}
