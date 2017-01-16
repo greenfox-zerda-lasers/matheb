@@ -2,13 +2,32 @@
 <html lang="en" ng-app>
   <head>
     <title>TheNetNinja Angular Playlist</title>
-    <link href="content/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
     <script src="app\lib\angular.min.js"></script>
   </head>
 
   <body>
-    <input type="text" ng-model="favMeat" placeholder="Enter you fav meat!" />
-    <p>Your fav meat is : {{favMeat}}</p>
+    <div ng-init="numbers=[1, 2, 3, 4]">
+      <p>{{5*5}}</p>
+      <p>{{user.name}}</p>
+      <p>{{numbers[0] + numbers[2]}}</p>
+      <ninja></ninja>
+    </div>
+    <div ng-init="meats=['pork', 'ham', 'beef']">
+      <input type="text" ng-model="favMeat" placeholder="Enter you fav meat!" />
+      <p>Your fav meat is : {{favMeat}}</p>
+      <p>{{5*5}}</p>
+      <p>{{user.name}}</p>
+      <p>You also like: {{meats[0]}} and {{meats[1]}}</p>
+    </div>
+    <div ng-init="color='red'">
+      <p class="{{color}}">Hellloooooo</p>
+    </div>
+    <div ng-init="ninjas=['JOshi', 'Crystal', 'Ryu', 'Sahun']">
+      <ul>
+        <li ng-repeat="ninja in ninjas">{{ninja}}</li>
+      </ul>
+    </div>
   </body>
 
 </html>
