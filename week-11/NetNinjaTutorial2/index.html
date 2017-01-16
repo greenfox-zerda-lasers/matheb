@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myNinjaApp">
+  <head>
+    <title>TheNetNinja Angular Playlist</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script src="app\lib\angular.min.js"></script>
+    <script src="app\app.js"></script>
+  </head>
+
+  <body>
+    <div ng-controller="NinjaController">
+      <p>{{message}}</p>
+      <ul>
+        <li ng-repeat="ninja in ninjas">{{ninja}}</li>
+      </ul>
+      <input type="text" ng-model="search" />
+      <ul>
+        <li ng-repeat="ninja in ninjaaas | orderBy: 'name' | filter: search">{{ninja.name}} - {{ninja.rate | currency: '€'}}</li>
+      </ul>
+    </div>
+  </body>
+
+</html>
