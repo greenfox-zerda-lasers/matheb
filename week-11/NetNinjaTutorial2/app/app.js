@@ -1,30 +1,47 @@
-var myNinjaApp = angular.module('myNinjaApp', []);
+var myNinjaApp = angular.module('myNinjaApp', ['ngRoute']);
 
-myNinjaApp.controller('NinjaController', ['$scope', function($scope){
-  $scope.message="Heeeey alll";
+myNinjaApp.config(['$routeProvider', function($routeProvider){
 
-  $scope.ninjas = ['Yoshi', 'Crystal', 'Ryu', 'Shaun'];
+  $routeProvider
+    .when('/home', {
+      templateUrl: 'views/home.html'
+    })
+    .when('/directory', {
+      templateUrl: 'views/directory.html',
+      controller: 'NinjaController'
+    }).otherwise({
+      redirectTo: '/home'
+    });
+}]);
 
-  $scope.ninjaaas = [
-    {
-    name: "Yoshi",
-    belt: "green",
-    rate: 50
-  },
-  {
-  name: "Crystal",
-  belt: "yellow",
-  rate: 30
-  },
-  {
-  name: "Ryu",
-  belt: "orange",
-  rate: 10
-  },
-  {
-  name: "Shaun",
-  belt: "black",
-  rate: 1000
+myNinjaApp.controller('NinjaController', ['$scope', '$http', function($scope, $http){
+  //$scope.message="Heeeey alll";
+
+  //$scope.ninjas = ['Yoshi', 'Crystal', 'Ryu', 'Shaun'];
+
+  $scope.removeNinja = function(ninja) {
+    var removedNinja = $scope.ninjaaas.indexOf(ninja);
+    $scope.ninjaaas.splice(removedNinja, 1);
   }
-];
+
+  $scope.addNinja = function() {
+    $scope.ninjaaas.push({
+      name: $scope.newninja.name,
+      belt: $scope.newninja.belt,
+      rate: parseInt($scope.newninja.rate),
+      available: true
+    });
+
+
+    $scope.newninja.name = ""
+    $scope.newninja.belt = ""
+    $scope.newninja.rate = ""
+
+  };
+
+  $http.get('data/ninjas.json'){
+    $scope.ninjaaas = data;
+  });
+
+
 }]);
