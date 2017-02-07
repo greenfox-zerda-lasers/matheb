@@ -1,0 +1,11 @@
+{
+  "name": "week-15",
+  "version": "1.0.0",
+  "description": "algorithm theory",
+  "main": "binary.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "ISC"
+}
