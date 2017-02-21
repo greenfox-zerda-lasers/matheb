@@ -27,13 +27,11 @@ function findPrimes(number) {
 function smallestMultiple(number) {
   var array = [1];
   for ( var i = 1; i < number+1; i++) {
-    // console.log(i)
     if ( multiply(array) % i != 0) {
       var primes = findPrimes(i);
-      // console.log(primes)
-      for (var j = 0; j < primes.length; j++) {
-        if (!array.slice(primes[j-1], primes.length).includes(primes[j])){
-          array.push(primes[j]);
+      for ( var k = 0; k < primes.length; k++) {
+        if (!array.slice(k-1, array.length).includes(primes[k])){
+          array.push(primes[k]);
           console.log(array, i,': ',primes)
         }
       }
@@ -46,6 +44,8 @@ function smallestMultiple(number) {
 
 console.log(multiply([1,2,3,4]));
 
+console.log(smallestMultiple(10));
 console.log(smallestMultiple(20));
+console.log(2*2*2*2*3*3*5*7*11*13*17*19)
 
 console.log(findPrimes(24))
